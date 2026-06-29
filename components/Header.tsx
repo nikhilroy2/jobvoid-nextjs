@@ -14,18 +14,18 @@ export default function Header() {
         
         {/* Desktop Links */}
         <div className="nav-links">
-          <Link href="#">How It Works</Link>
-          <Link href="#">The Role</Link>
-          <Link href="#">Pay</Link>
-          <Link href="#">FAQ</Link>
-          <Link href="#">About</Link>
+          <Link href="/how-it-works">How It Works</Link>
+          <Link href="/the-role">The Role</Link>
+          <Link href="/pay">Pay</Link>
+          <Link href="/faq">FAQ</Link>
+          <Link href="/about">About</Link>
         </div>
         
         {/* Desktop Button */}
         <div className="nav-actions">
-          <button className="btn btn-primary nav-btn-desktop">
+          <Link href="/apply" className="btn btn-primary nav-btn-desktop">
             Apply to close <ArrowRight size={18} />
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -40,14 +40,14 @@ export default function Header() {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="mobile-menu">
-            <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>How It Works</Link>
-            <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>The Role</Link>
-            <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>Pay</Link>
-            <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
-            <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-            <button className="btn btn-primary" style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}>
+            <Link href="/how-it-works" onClick={() => setIsMobileMenuOpen(false)}>How It Works</Link>
+            <Link href="/the-role" onClick={() => setIsMobileMenuOpen(false)}>The Role</Link>
+            <Link href="/pay" onClick={() => setIsMobileMenuOpen(false)}>Pay</Link>
+            <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+            <Link href="/apply" className="btn btn-primary" style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}>
               Apply to close <ArrowRight size={18} />
-            </button>
+            </Link>
           </div>
         )}
       </nav>

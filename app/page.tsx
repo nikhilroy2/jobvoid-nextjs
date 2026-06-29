@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import CTASection from "../components/CTASection";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -325,24 +326,7 @@ export default function Home() {
       <CTASection />
 
       {/* Footer */}
-      <footer className="footer container">
-        <div className="footer-content">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <BriefcaseBusiness size={18} color="var(--accent-color)" /> 
-            Jobvoid &middot; Houston, Texas &middot; Closing for AI clients since 2020
-          </div>
-          <div className="footer-links">
-            <Link href="#">How It Works</Link>
-            <Link href="#">The Role</Link>
-            <Link href="#">Pay</Link>
-            <Link href="#">FAQ</Link>
-            <Link href="#">About</Link>
-            <Link href="#">Apply</Link>
-            <Link href="#">Privacy</Link>
-            <Link href="#">Terms</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

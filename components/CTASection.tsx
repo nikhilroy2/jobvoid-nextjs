@@ -1,6 +1,19 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-export default function CTASection() {
+interface CTASectionProps {
+  headline?: string;
+  body?: React.ReactNode;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+export default function CTASection({
+  headline = "If you can close, we want to talk.",
+  body = "We read every application and we move fast on the ones that fit. A strong closer can be approved and dialing inside the same week.",
+  buttonText = "Apply to close",
+  buttonHref = "/apply"
+}: CTASectionProps) {
   return (
     <div className="container">
       <section className="cta-section">
@@ -39,13 +52,15 @@ export default function CTASection() {
         </div>
 
         <div className="cta-content">
-          <h2 className="cta-title">If you can close, we want to talk.</h2>
-          <p className="cta-body">
-            We read every application and we move fast on the ones that fit. A strong closer can be approved and dialing inside the same week.
-          </p>
-          <button className="btn btn-primary" style={{ backgroundColor: '#fff', color: 'var(--accent-hover)' }}>
-            Apply to close <ArrowRight size={18} />
-          </button>
+          <h2 className="cta-title">{headline}</h2>
+          {body && (
+            <p className="cta-body">
+              {body}
+            </p>
+          )}
+          <Link href={buttonHref} className="btn btn-primary" style={{ backgroundColor: '#fff', color: 'var(--accent-hover)', display: 'inline-flex', textDecoration: 'none' }}>
+            {buttonText} <ArrowRight size={18} />
+          </Link>
         </div>
       </section>
     </div>
