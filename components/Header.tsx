@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <div className="container">
       <nav className="nav-container">
-        <div className="nav-brand">Jobvoid</div>
+        <Link href="/" className="nav-brand">Jobvoid</Link>
         
         {/* Desktop Links */}
         <div className="nav-links">

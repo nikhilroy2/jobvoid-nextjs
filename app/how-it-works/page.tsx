@@ -7,6 +7,7 @@ import {
 import CTASection from "../../components/CTASection";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import FeatureSection from "../../components/FeatureSection";
 
 export default function HowItWorks() {
   return (
@@ -81,54 +82,64 @@ export default function HowItWorks() {
       </section>
 
       {/* Section: What "active" means */}
-      <section className="section" style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}>
-        <div className="container section-inner" style={{ textAlign: 'center' }}>
-          <span className="eyebrow"><CheckCircle2 size={16} /> The one rule that matters</span>
-          <h2 className="section-title">Stay active and the recurring keeps paying.</h2>
-          <p className="section-body text-left">
-            Active means you close at least one new sale in a calendar month. Just dialing does not count, closing does. Stay active and every recurring commission you have built keeps landing. Go a full calendar month without a new sale and the recurring payments pause until you close again. The moment you close, you are active and they resume. It exists for one reason: the recurring money flows to the closers who are still producing.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="The one rule that matters"
+        eyebrowIcon={<CheckCircle2 size={16} />}
+        title="Stay active and the recurring keeps paying."
+        imageSrc="/images/pay_engine.png"
+        imageAlt="The one rule"
+        isReversed={true}
+        isGlass={false}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(225deg, rgba(236, 72, 153, 0.15) 0%, rgba(244, 63, 94, 0.08) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body text-left">
+          Active means you <span className="text-highlight">close at least one new sale in a calendar month</span>. Just dialing does not count, closing does. Stay active and every recurring commission you have built keeps landing. Go a full calendar month without a new sale and the recurring payments pause until you close again. The moment you close, you are active and they resume. It exists for one reason: the recurring money flows to the closers who are still producing.
+        </p>
+      </FeatureSection>
 
       {/* Section: Your first week */}
-      <section className="section section-glass">
-        <div className="container section-inner">
-          <span className="eyebrow"><CalendarDays size={16} /> What to expect</span>
-          <h2 className="section-title">A realistic timeline.</h2>
-          
-          <div className="timeline-list" style={{ marginTop: '48px' }}>
-            <div className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
-                <h4 className="timeline-time">Day 1 to 4</h4>
-                <p className="timeline-desc">Application reviewed and decision made.</p>
-              </div>
+      <FeatureSection
+        eyebrowText="What to expect"
+        eyebrowIcon={<CalendarDays size={16} />}
+        title="A realistic timeline."
+        imageSrc="/images/pay_math.png"
+        imageAlt="What to expect"
+        isGlass={true}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.15) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <div className="timeline-list" style={{ marginTop: '24px' }}>
+          <div className="timeline-item">
+            <div className="timeline-marker"></div>
+            <div className="timeline-content">
+              <h4 className="timeline-time">Day 1 to 4</h4>
+              <p className="timeline-desc">Application reviewed and decision made.</p>
             </div>
-            <div className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
-                <h4 className="timeline-time">On approval</h4>
-                <p className="timeline-desc">Dialer account created, client and product walk-through, script review.</p>
-              </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-marker"></div>
+            <div className="timeline-content">
+              <h4 className="timeline-time">On approval</h4>
+              <p className="timeline-desc">Dialer account created, client and product walk-through, script review.</p>
             </div>
-            <div className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
-                <h4 className="timeline-time">Within days of approval</h4>
-                <p className="timeline-desc">Live on the phones with your list.</p>
-              </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-marker"></div>
+            <div className="timeline-content">
+              <h4 className="timeline-time">Within days of approval</h4>
+              <p className="timeline-desc">Live on the phones with your list.</p>
             </div>
-            <div className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
-                <h4 className="timeline-time">The following Friday</h4>
-                <p className="timeline-desc">Your first payout for that week's closes.</p>
-              </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-marker"></div>
+            <div className="timeline-content">
+              <h4 className="timeline-time">The following Friday</h4>
+              <p className="timeline-desc">Your first payout for that week's closes.</p>
             </div>
           </div>
         </div>
-      </section>
+      </FeatureSection>
 
       {/* Section: Division of labor */}
       <section className="section" style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}>

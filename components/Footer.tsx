@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className="footer container">
       <div className="footer-content">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <BriefcaseBusiness size={18} color="var(--accent-color)" /> 
-          Jobvoid &middot; Houston, Texas &middot; Closing for AI clients since 2020
+        <div className="footer-brand">
+          <BriefcaseBusiness size={18} color="var(--accent-color)" className="footer-brand-icon" /> 
+          <span>Jobvoid &middot; Houston, Texas &middot; Closing for AI clients since 2020</span>
         </div>
         <div className="footer-links">
           <Link href="/how-it-works">How It Works</Link>

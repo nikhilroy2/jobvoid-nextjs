@@ -113,7 +113,7 @@ export default function FAQ() {
         </section>
       </div>
 
-      <section className="section" style={{ position: 'relative', zIndex: 10, marginTop: '-40px', paddingTop: '0' }}>
+      <section className="section faq-section">
         <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
           
           <div className="faq-list">

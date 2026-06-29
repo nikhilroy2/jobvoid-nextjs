@@ -16,6 +16,7 @@ import {
 import CTASection from "../../components/CTASection";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import FeatureSection from "../../components/FeatureSection";
 
 export default function TheRole() {
   return (
@@ -40,9 +41,9 @@ export default function TheRole() {
       </div>
 
       {/* Quick facts block */}
-      <section className="section" style={{ padding: '0 0 60px 0' }}>
+      <section className="section" style={{ paddingTop: '32px', paddingBottom: '60px' }}>
         <div className="container">
-          <div className="quick-facts-grid" style={{ marginTop: '-60px', position: 'relative', zIndex: 10 }}>
+          <div className="quick-facts-grid" style={{ position: 'relative', zIndex: 10 }}>
             <div className="fact-card">
               <div className="fact-icon"><BriefcaseBusiness size={24} /></div>
               <div className="fact-content">
@@ -97,75 +98,96 @@ export default function TheRole() {
       </section>
 
       {/* Section: What you'll actually do */}
-      <section className="section section-glass">
-        <div className="container section-inner">
-          <span className="eyebrow"><PhoneCall size={16} /> The work</span>
-          <h2 className="section-title">You're on the phone, closing businesses that need to be seen.</h2>
-          <p className="section-body">
-            Your day is calls. The leads are loaded, so you are not researching or list building. You dial a business, get to the decision maker, and open a conversation most of them did not expect but should be glad they had.
-          </p>
-          <p className="section-body">
-            Here is the pitch you are carrying. Buyers are starting to ask AI assistants like ChatGPT who the best provider is, and the AI names a short list. Businesses on that list win the lead. Businesses that are not on it never knew the buyer existed. Our client's backend team does the work to put a business on that list and keep them there, billed as a monthly subscription. Your job is to make a business owner feel that gap, then close them on the team that fixes it.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="The work"
+        eyebrowIcon={<PhoneCall size={16} />}
+        title="You're on the phone, closing businesses that need to be seen."
+        imageSrc="/who_you_ll_call.png"
+        imageAlt="The work"
+        isGlass={true}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body">
+          Your day is calls. The leads are loaded, so you are not researching or list building. You dial a business, get to the decision maker, and <span className="text-highlight">open a conversation most of them did not expect but should be glad they had</span>.
+        </p>
+        <p className="section-body">
+          Here is the pitch you are carrying. Buyers are starting to ask AI assistants like ChatGPT who the best provider is, and the AI names a short list. Businesses on that list win the lead. Businesses that are not on it never knew the buyer existed. Our client's backend team does the work to put a business on that list and keep them there, billed as a monthly subscription. <span className="text-bold">Your job is to make a business owner feel that gap, then close them on the team that fixes it.</span>
+        </p>
+      </FeatureSection>
 
       {/* Section: A day in the life */}
-      <section className="section" style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}>
-        <div className="container section-inner">
-          <span className="eyebrow"><Activity size={16} /> The rhythm</span>
-          <h2 className="section-title">No clock, but the good ones build a routine.</h2>
-          <p className="section-body">
-            There is no shift to punch, so your day is shaped by you. The closers who win here build blocks of focused dialing during business hours when decision makers actually answer, take short resets, and review the calls that did not land so the next one does. You work a live list, log your closes as they happen, and watch your Friday number climb through the week. The momentum days feel great. The slow days are still yours to push through, because nobody is going to do it for you. That is the trade for the freedom.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="The rhythm"
+        eyebrowIcon={<Activity size={16} />}
+        title="No clock, but the good ones build a routine."
+        imageSrc="/images/pay_engine.png"
+        imageAlt="The rhythm"
+        isReversed={true}
+        isGlass={false}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(225deg, rgba(167, 139, 250, 0.15) 0%, rgba(52, 211, 153, 0.08) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body">
+          There is no shift to punch, so your day is shaped by you. The closers who win here build blocks of focused dialing during business hours when decision makers actually answer, take short resets, and review the calls that did not land so the next one does. You work a live list, log your closes as they happen, and <span className="text-highlight">watch your Friday number climb through the week</span>. The momentum days feel great. The slow days are still yours to push through, because nobody is going to do it for you. That is the trade for the freedom.
+        </p>
+      </FeatureSection>
 
       {/* Section: What you're responsible for */}
-      <section className="section section-glass">
-        <div className="container section-inner">
-          <span className="eyebrow"><ClipboardList size={16} /> The expectations</span>
-          <h2 className="section-title">What we count on from every closer.</h2>
-          
-          <ul className="styled-list">
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Work your list consistently and professionally.</span>
-            </li>
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Represent the client well on every single call.</span>
-            </li>
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Follow the script's framework while still sounding like a human.</span>
-            </li>
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Handle objections instead of folding at the first no.</span>
-            </li>
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Log your closes accurately.</span>
-            </li>
-            <li>
-              <div className="list-icon"><CheckCircle2 size={20} /></div>
-              <span>Stay active, because that is what keeps your recurring alive.</span>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="The expectations"
+        eyebrowIcon={<ClipboardList size={16} />}
+        title="What we count on from every closer."
+        imageSrc="/images/about_our_way.png"
+        imageAlt="The expectations"
+        isGlass={true}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.15) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <ul className="styled-list">
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Work your list consistently and professionally.</span>
+          </li>
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Represent the client well on every single call.</span>
+          </li>
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Follow the script's framework while still sounding like a human.</span>
+          </li>
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Handle objections instead of folding at the first no.</span>
+          </li>
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Log your closes accurately.</span>
+          </li>
+          <li>
+            <div className="list-icon"><CheckCircle2 size={20} /></div>
+            <span>Stay active, because that is what keeps your recurring alive.</span>
+          </li>
+        </ul>
+      </FeatureSection>
 
       {/* Section: What separates the closers who win? */}
-      <section className="section" style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}>
-        <div className="container section-inner">
-          <span className="eyebrow"><Crosshair size={16} /> The difference</span>
-          <h2 className="section-title">The five-figure earners treat this like a business they own.</h2>
-          <p className="section-body">
-            The closers clearing over $10,000 a month are not lucky. They dial during the hours their prospects pick up. They do not take a no personally and they do not quit a call early. They learn the product well enough to go off-script when the moment calls for it, then come back to the framework. And they understand the math: that closing every month stacks fresh commissions on top of the recurring tail, and that consistency beats any single big week.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="The difference"
+        eyebrowIcon={<Crosshair size={16} />}
+        title="The five-figure earners treat this like a business they own."
+        imageSrc="/images/pay_math.png"
+        imageAlt="The difference"
+        isReversed={true}
+        isGlass={false}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(225deg, rgba(236, 72, 153, 0.15) 0%, rgba(244, 63, 94, 0.08) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body">
+          The closers clearing over $10,000 a month are not lucky. They dial during the hours their prospects pick up. They do not take a no personally and they do not quit a call early. They learn the product well enough to go off-script when the moment calls for it, then come back to the framework. And they understand the math: that <span className="text-highlight">closing every month stacks fresh commissions on top of the recurring tail</span>, and that consistency beats any single big week.
+        </p>
+      </FeatureSection>
 
       {/* Section: Who this is for and who it isn't */}
       <section className="section section-glass">
@@ -184,26 +206,37 @@ export default function TheRole() {
       </section>
 
       {/* Section: Requirements */}
-      <section className="section" style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}>
-        <div className="container section-inner">
-          <span className="eyebrow"><FileCheck2 size={16} /> What we screen on</span>
-          <h2 className="section-title">Experience, and the ability to prove it.</h2>
-          <p className="section-body">
-            You need genuine B2B sales and closing experience. We want people who have sold to businesses, ideally over the phone, and can point to deals they personally brought in. We do not care about your degree, your old title, or where you worked. We care that you have closed before and can do it again from your first week. You will use your own laptop, headset, and internet, and we will create your dialer account once you are approved.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="What we screen on"
+        eyebrowIcon={<FileCheck2 size={16} />}
+        title="Experience, and the ability to prove it."
+        imageSrc="/images/about_who_we_work_with.png"
+        imageAlt="What we screen on"
+        isGlass={true}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(249, 115, 22, 0.1) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body">
+          You need genuine B2B sales and closing experience. We want people who have sold to businesses, ideally over the phone, and can <span className="text-bold">point to deals they personally brought in</span>. We do not care about your degree, your old title, or where you worked. We care that you have closed before and can do it again from your first week. You will use your own laptop, headset, and internet, and we will create your dialer account once you are approved.
+        </p>
+      </FeatureSection>
 
       {/* Section: No background check */}
-      <section className="section section-glass">
-        <div className="container section-inner">
-          <span className="eyebrow"><ShieldAlert size={16} /> Our take</span>
-          <h2 className="section-title">The phone doesn't lie.</h2>
-          <p className="section-body">
-            We do not run background checks. A real track record of closing tells us far more than a paperwork screen ever could, and we would rather open the door to every qualified closer than filter out good people over things that have nothing to do with the work. Either you can close or you cannot, and that is what we are hiring on.
-          </p>
-        </div>
-      </section>
+      <FeatureSection
+        eyebrowText="Our take"
+        eyebrowIcon={<ShieldAlert size={16} />}
+        title="The phone doesn't lie."
+        imageSrc="/images/about_why_we_exist.png"
+        imageAlt="Our take"
+        isReversed={true}
+        isGlass={false}
+        imageClassName="about-page-image"
+        sectionStyle={{ backgroundImage: 'linear-gradient(225deg, rgba(56, 189, 248, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', backdropFilter: 'blur(20px)' }}
+      >
+        <p className="section-body">
+          We do not run background checks. A real track record of closing tells us far more than a paperwork screen ever could, and we would rather open the door to every qualified closer than filter out good people over things that have nothing to do with the work. <span className="text-highlight">Either you can close or you cannot</span>, and that is what we are hiring on.
+        </p>
+      </FeatureSection>
 
       <CTASection 
         headline="If that sounds like you, apply."

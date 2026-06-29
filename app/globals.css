@@ -193,6 +193,7 @@ a:hover {
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  color: #fff;
 }
 
 .btn-secondary {
@@ -529,11 +530,16 @@ a:hover {
   line-height: 1.15;
 }
 
+.image-title-overlay .section-title {
+  border-left: 5px solid var(--accent-color);
+  padding-left: 24px;
+}
+
 .section-body {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: var(--text-secondary);
   margin-bottom: 24px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .section-grid {
@@ -566,6 +572,10 @@ a:hover {
     calc(100% - 120px) 100%,
     0 100%
   );
+}
+
+.about-page-image {
+  max-height: 450px;
 }
 
 .section-image-wrapper::before,
@@ -803,14 +813,14 @@ a:hover {
 
 .step-title {
   font-weight: 800;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
   color: var(--text-primary);
 }
 
 .step-desc {
   color: var(--text-secondary);
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -934,6 +944,12 @@ a:hover {
   color: var(--text-muted);
   font-size: 0.95rem;
   font-weight: 500;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footer-links {
@@ -1167,6 +1183,14 @@ a:hover {
   accent-color: var(--accent-color);
 }
 
+/* FAQ Page */
+.faq-section {
+  position: relative;
+  z-index: 10;
+  margin-top: 32px;
+  padding-top: 0;
+}
+
 /* FAQ Accordion */
 .faq-list {
   display: flex;
@@ -1307,12 +1331,23 @@ a:hover {
   }
   .footer-content {
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
     text-align: center;
+  }
+  .footer-brand {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    line-height: 1.6;
+    padding: 0 16px;
+  }
+  .footer-brand-icon {
+    margin-bottom: 4px;
   }
   .footer-links {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 16px 24px;
   }
   .steps-list::before {
     left: 24px;
@@ -1337,7 +1372,10 @@ a:hover {
     grid-template-columns: 1fr;
   }
   .section {
-    padding: 60px 0;
+    padding: 32px 0;
+  }
+  .section-content p:last-child {
+    margin-bottom: 0;
   }
   .section-title {
     font-size: 2rem;
@@ -1353,6 +1391,13 @@ a:hover {
   .image-title-overlay .eyebrow {
     top: 24px;
     right: 24px;
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .image-title-overlay .eyebrow svg {
+    width: 12px;
+    height: 12px;
   }
   .image-title-overlay .section-title {
     font-size: 1.5rem;
@@ -1363,5 +1408,8 @@ a:hover {
   }
   .step-desc {
     font-size: 0.95rem;
+  }
+  .faq-section {
+    margin-top: 32px;
   }
 }
