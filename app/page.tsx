@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { 
   ArrowRight, 
   Banknote, 
@@ -11,6 +12,8 @@ import {
   Clock,
   Rocket
 } from "lucide-react";
+import CTASection from "../components/CTASection";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
@@ -18,21 +21,7 @@ export default function Home() {
       {/* Hero Wrapper (Includes Header + Hero to extend background to top) */}
       <div className="hero-wrapper">
         {/* Top nav */}
-        <div className="container">
-          <nav className="nav-container">
-            <div className="nav-brand">Jobvoid</div>
-            <div className="nav-links">
-              <a href="#">How It Works</a>
-              <a href="#">The Role</a>
-              <a href="#">Pay</a>
-              <a href="#">FAQ</a>
-              <a href="#">About</a>
-            </div>
-            <button className="btn btn-primary">
-              Apply to close <ArrowRight size={18} />
-            </button>
-          </nav>
-        </div>
+        <Header />
 
         {/* Hero Section */}
         <section className="hero">
@@ -54,7 +43,7 @@ export default function Home() {
           <div className="container">
             <h1 className="hero-title">Close B2B deals. Get paid every Friday. Work on your terms.</h1>
             <p className="hero-subtitle">
-              Jobvoid places aggressive closers with AI companies that already have the product, the budget, and the demand. We hand you the leads, the script, and a dialer account. You bring the close.
+              Jobvoid places <span className="text-highlight">aggressive closers</span> with AI companies that already have the product, the budget, and the demand. We hand you the <span className="text-bold">leads, the script, and a dialer account</span>. You bring the close.
             </p>
             <div className="hero-actions">
               <button className="btn btn-primary" style={{ padding: '16px 36px', fontSize: '1.125rem' }}>
@@ -110,18 +99,20 @@ export default function Home() {
       <section className="section section-glass">
         <div className="container">
           <div className="section-grid">
-            <div className="section-content">
-              <span className="eyebrow"><Target size={16} /> What this is</span>
-              <h2 className="section-title">A real closing seat with an AI client, not a job board listing.</h2>
-              <p className="section-body">
-                Jobvoid is a sales recruiting firm in Houston. Since 2020 we have done one thing: find closers and put them on the phones for AI companies that need pipeline. We are not a marketplace and we are not posting other people's jobs. When you join, you are closing for our current client, and we run everything behind you so your only job is the conversation.
-              </p>
-              <p className="section-body">
-                The client sells a one-for-you AI visibility service to businesses. You will be calling companies that should be buying it and most of the time do not even know they need it yet. That gap is your opening, and it is why these calls convert.
-              </p>
-            </div>
             <div className="section-image-wrapper">
+              <div className="image-title-overlay">
+                <span className="eyebrow"><Target size={16} /> What this is</span>
+                <h2 className="section-title">A real closing seat with an AI client, not a job board listing.</h2>
+              </div>
               <img src="/what_this_is.png" alt="What this is" />
+            </div>
+            <div className="section-content">
+              <p className="section-body">
+                Jobvoid is a sales recruiting firm in Houston. Since 2020 we have done one thing: <span className="text-bold">find closers and put them on the phones</span> for AI companies that need pipeline. We are not a marketplace and we are not posting other people's jobs. When you join, you are <span className="text-highlight">closing for our current client</span>, and we run everything behind you so your only job is the conversation.
+              </p>
+              <p className="section-body">
+                The client sells a <span className="text-bold">one-for-you AI visibility service</span> to businesses. You will be calling companies that should be buying it and most of the time do not even know they need it yet. That gap is your opening, and it is <span className="text-highlight">why these calls convert</span>.
+              </p>
             </div>
           </div>
         </div>
@@ -185,19 +176,21 @@ export default function Home() {
         <div className="container">
           <div className="section-grid">
             <div className="section-content">
-              <span className="eyebrow"><Rocket size={16} /> What you're selling</span>
-              <h2 className="section-title">AI visibility, the thing every business will want and most don't understand yet.</h2>
               <p className="section-body">
-                Buyers have started asking AI assistants like ChatGPT who the best provider is instead of scrolling a search page. The AI names a short list. If a business is on that list, the lead is theirs. If they are not, they never even knew the buyer was looking.
+                Buyers have started asking <span className="text-highlight">AI assistants like ChatGPT</span> who the best provider is instead of scrolling a search page. The AI names a short list. If a business is on that list, the lead is theirs. If they are not, they never even knew the buyer was looking.
               </p>
               <p className="section-body">
-                Our client fixes that. A dedicated backend team does the work to get a business referenced and recommended across AI platforms. Think of it like SEO, but pointed at AI answers instead of search rankings, and handled entirely for the customer. The business pays a monthly subscription and the team does the work. Visibility is earned through what the team actually does, not promised out of thin air.
+                Our client fixes that. A dedicated backend team does the work to get a business <span className="text-bold">referenced and recommended across AI platforms</span>. Think of it like SEO, but pointed at AI answers instead of search rankings, and handled entirely for the customer. The business pays a monthly subscription and the team does the work. Visibility is earned through what the team actually does, not promised out of thin air.
               </p>
               <p className="section-body">
-                You are not selling a gadget nobody asked for. You are calling a business owner, showing them they are invisible in the exact place their next customer is deciding, and closing them on the team that makes them visible.
+                You are not selling a gadget nobody asked for. You are calling a business owner, showing them they are <span className="text-highlight">invisible in the exact place their next customer is deciding</span>, and closing them on the team that makes them visible.
               </p>
             </div>
             <div className="section-image-wrapper">
+              <div className="image-title-overlay">
+                <span className="eyebrow"><Rocket size={16} /> What you're selling</span>
+                <h2 className="section-title">AI visibility, the thing every business will want and most don't understand yet.</h2>
+              </div>
               <img src="/what_you_re_selling.png" alt="What you're selling" />
             </div>
           </div>
@@ -209,13 +202,15 @@ export default function Home() {
         <div className="container">
           <div className="section-grid" style={{ direction: 'rtl' }}>
             <div className="section-content" style={{ direction: 'ltr' }}>
-              <span className="eyebrow"><Target size={16} /> Who you'll call</span>
-              <h2 className="section-title">High-ticket businesses that live and die on being chosen.</h2>
               <p className="section-body">
-                The best customers are service businesses where a single new client is worth thousands, so visibility pays for itself fast. Think cosmetic surgeons, med spas, dentists, aesthetic and elective medical practices, law firms, and other high-margin local providers. When one new patient or client is worth several thousand dollars, getting named by an AI assistant instead of a competitor is an easy yes once they understand the stakes. Your job is to make them understand the stakes.
+                The best customers are service businesses where <span className="text-highlight">a single new client is worth thousands</span>, so visibility pays for itself fast. Think cosmetic surgeons, med spas, dentists, aesthetic and elective medical practices, law firms, and other high-margin local providers. When one new patient or client is worth several thousand dollars, <span className="text-bold">getting named by an AI assistant instead of a competitor is an easy yes</span> once they understand the stakes. Your job is to make them understand the stakes.
               </p>
             </div>
             <div className="section-image-wrapper" style={{ direction: 'ltr' }}>
+              <div className="image-title-overlay">
+                <span className="eyebrow"><Target size={16} /> Who you'll call</span>
+                <h2 className="section-title">High-ticket businesses that live and die on being chosen.</h2>
+              </div>
               <img src="/who_you_ll_call.png" alt="Who you'll call" />
             </div>
           </div>
@@ -227,16 +222,18 @@ export default function Home() {
         <div className="container">
           <div className="section-grid">
             <div className="section-content">
-              <span className="eyebrow"><CheckCircle2 size={16} /> Read this before you apply</span>
-              <h2 className="section-title">Commission only. Cold calling. Experience required.</h2>
               <p className="section-body">
-                There is no base, no draw, and no hourly. You earn on what you close. These are cold calls, not warm inbound leads, though the list is targeted at businesses that genuinely fit. And you need real B2B closing experience, because this is not where you learn to sell.
+                There is no base, no draw, and no hourly. <span className="text-highlight">You earn on what you close.</span> These are cold calls, not warm inbound leads, though the list is targeted at businesses that genuinely fit. And you need <span className="text-bold">real B2B closing experience</span>, because this is not where you learn to sell.
               </p>
               <p className="section-body">
                 We put this on the home page on purpose. The people who can handle it should keep reading. The people who cannot should save themselves the time. We would rather be blunt now than waste your week later.
               </p>
             </div>
             <div className="section-image-wrapper">
+              <div className="image-title-overlay">
+                <span className="eyebrow"><CheckCircle2 size={16} /> Read this before you apply</span>
+                <h2 className="section-title">Commission only. Cold calling. Experience required.</h2>
+              </div>
               <img src="/read_this_before.png" alt="Read this before you apply" />
             </div>
           </div>
@@ -248,18 +245,20 @@ export default function Home() {
         <div className="container">
           <div className="section-grid" style={{ direction: 'rtl' }}>
             <div className="section-content" style={{ direction: 'ltr' }}>
-              <span className="eyebrow"><Banknote size={16} /> The money</span>
-              <h2 className="section-title">Flat commission on every close, plus a recurring tail for three months.</h2>
               <p className="section-body">
-                Every sale pays you a flat commission, paid that Friday. On top of that, each sale carries a small recurring percentage that keeps paying for three months, as long as you stay active. Active means you close at least one new sale that month. Keep closing and you stack fresh commissions on top of the recurring tail from your recent sales. The closers who treat this like their own business are the ones clearing five figures.
+                Every sale pays you a <span className="text-bold">flat commission, paid that Friday.</span> On top of that, each sale carries a <span className="text-highlight">small recurring percentage that keeps paying for three months</span>, as long as you stay active. Active means you close at least one new sale that month. Keep closing and you stack fresh commissions on top of the recurring tail from your recent sales. The closers who treat this like their own business are the ones clearing five figures.
               </p>
               <div style={{ marginTop: '32px' }}>
-                <button className="btn btn-secondary">
+                <Link href="#" className="btn-link">
                   See the full pay breakdown <ArrowRight size={18} />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="section-image-wrapper" style={{ direction: 'ltr' }}>
+              <div className="image-title-overlay">
+                <span className="eyebrow"><Banknote size={16} /> The money</span>
+                <h2 className="section-title">Flat commission on every close, plus a recurring tail for three months.</h2>
+              </div>
               <img src="/the_money.png" alt="The money" />
             </div>
           </div>
@@ -315,27 +314,15 @@ export default function Home() {
           </div>
           
           <div style={{ marginTop: '48px', textAlign: 'center' }}>
-            <button className="btn btn-secondary">
+            <Link href="#" className="btn-link" style={{ justifyContent: 'center' }}>
               See the full process <ArrowRight size={18} />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Final call to action */}
-      <div className="container">
-        <section className="cta-section">
-          <div className="cta-content">
-            <h2 className="cta-title">If you can close, we want to talk.</h2>
-            <p className="cta-body">
-              We read every application and we move fast on the ones that fit. A strong closer can be approved and dialing inside the same week.
-            </p>
-            <button className="btn btn-primary" style={{ backgroundColor: '#fff', color: 'var(--accent-hover)' }}>
-              Apply to close <ArrowRight size={18} />
-            </button>
-          </div>
-        </section>
-      </div>
+      <CTASection />
 
       {/* Footer */}
       <footer className="footer container">
@@ -345,14 +332,14 @@ export default function Home() {
             Jobvoid &middot; Houston, Texas &middot; Closing for AI clients since 2020
           </div>
           <div className="footer-links">
-            <a href="#">How It Works</a>
-            <a href="#">The Role</a>
-            <a href="#">Pay</a>
-            <a href="#">FAQ</a>
-            <a href="#">About</a>
-            <a href="#">Apply</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <Link href="#">How It Works</Link>
+            <Link href="#">The Role</Link>
+            <Link href="#">Pay</Link>
+            <Link href="#">FAQ</Link>
+            <Link href="#">About</Link>
+            <Link href="#">Apply</Link>
+            <Link href="#">Privacy</Link>
+            <Link href="#">Terms</Link>
           </div>
         </div>
       </footer>
