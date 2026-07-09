@@ -80,13 +80,13 @@ function ScrollCard({ project }: { project: any }) {
       ref={ref} 
       className={`${styles.cardWrapper} ${isVisible ? styles.visible : ''}`}
     >
-      <div className={styles.imageContainer}>
-         <img src={project.image} alt={project.title} className={styles.projectImage} />
-         <div className={styles.imageTag}>{project.tag}</div>
-      </div>
       <div className={styles.cardInfo}>
          <h3 className={styles.cardTitle}>{project.title}</h3>
          <div className={styles.cardDesc}>{project.desc}</div>
+      </div>
+      <div className={styles.imageContainer}>
+         <img src={project.image} alt={project.title} className={styles.projectImage} />
+         <div className={styles.imageTag}>{project.tag}</div>
       </div>
     </div>
   );

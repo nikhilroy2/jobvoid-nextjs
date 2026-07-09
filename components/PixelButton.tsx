@@ -9,7 +9,8 @@ export default function PixelButton({
   variant = "solid",
   href,
   className = "",
-  withArrow = true
+  withArrow = true,
+  type = "button"
 }: { 
   children?: React.ReactNode;
   onClick?: () => void;
@@ -17,6 +18,7 @@ export default function PixelButton({
   href?: string;
   className?: string;
   withArrow?: boolean;
+  type?: "button" | "submit" | "reset";
 }) {
   const classes = `${styles.button} ${variant === 'outline' ? styles.outline : ''} ${className}`;
 
@@ -38,6 +40,7 @@ export default function PixelButton({
 
   return (
     <button 
+      type={type}
       onClick={onClick}
       className={classes}
     >

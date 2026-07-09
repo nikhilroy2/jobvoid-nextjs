@@ -598,6 +598,22 @@ a:hover {
   align-items: center;
 }
 
+.hover-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.hover-card:hover {
+  transform: perspective(1200px) rotateX(6deg) rotateY(-4deg) translateY(-8px) scale(1.02);
+  box-shadow: 15px 30px 60px rgba(0, 0, 0, 0.08), -15px 30px 60px rgba(139, 92, 246, 0.05) !important;
+}
+
+@media (min-width: 769px) {
+  .staggered-grid > div:nth-child(2) {
+    margin-top: 40px;
+  }
+}
+
 .section-image-wrapper {
   position: relative;
   border-radius: 0;
@@ -1225,18 +1241,61 @@ a:hover {
 
 /* Forms */
 .form-container {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 48px;
   border-radius: 24px;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.form-section-bg::before {
+  content: '';
+  position: absolute;
+  inset: -100px;
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 60%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.form-section-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-width: 1000px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(139,92,246,0.4) 0%, rgba(59,130,246,0.4) 50%, rgba(236,72,153,0) 80%);
+  filter: blur(80px);
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .form-label {
@@ -1244,56 +1303,110 @@ a:hover {
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon.textarea-wrapper {
+  align-items: flex-start;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.textarea-wrapper .input-icon {
+  top: 18px;
 }
 
 .form-input,
 .form-textarea,
 .form-select {
   width: 100%;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid var(--glass-border);
-  border-radius: 12px;
+  padding: 16px 20px 16px 52px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
   color: var(--text-primary);
   font-size: 1.05rem;
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  background: #ffffff;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
 }
 
 .form-textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 140px;
 }
 
 .form-radio-group {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .form-radio-label {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+.form-radio-label:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-radio-label:has(input:checked) {
+  background: #8b5cf6;
+  color: #ffffff;
+  border-color: #8b5cf6;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
 }
 
 .form-radio-label input {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent-color);
+  display: none;
 }
 
 /* FAQ Page */
@@ -1315,15 +1428,28 @@ a:hover {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-left: 4px solid transparent;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .faq-item.open {
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: var(--shadow-md);
+  border-left-color: #8b5cf6;
+  border-right-color: rgba(139, 92, 246, 0.2);
+  border-top-color: rgba(139, 92, 246, 0.2);
+  border-bottom-color: rgba(139, 92, 246, 0.2);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
 }
 
 .faq-question {
@@ -1338,27 +1464,63 @@ a:hover {
   cursor: pointer;
   color: var(--text-primary);
   font-family: inherit;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.faq-question:hover {
+.faq-question-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.faq-left-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-left-icon {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+  transform: scale(1.05);
 }
 
 .faq-question-text {
   font-size: 1.15rem;
   font-weight: 700;
   padding-right: 24px;
+  letter-spacing: -0.01em;
 }
 
 .faq-icon {
-  color: var(--accent-color);
+  color: var(--text-secondary);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .faq-item.open .faq-icon {
   transform: rotate(180deg);
+  color: #fff;
+  background: #8b5cf6;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
 }
 
 .faq-answer {
@@ -1455,8 +1617,37 @@ a:hover {
     padding: 0 10px;
   }
 
+  .form-container {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    padding: 12px 16px 12px 42px;
+    font-size: 0.95rem;
+  }
+
+  .input-icon {
+    left: 12px;
+  }
+
+  .textarea-wrapper .input-icon {
+    top: 14px;
+  }
+
+  .form-radio-label {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .responsive-form-label {
+    font-size: 0.95rem !important;
+    gap: 12px !important;
+    padding-left: 12px !important;
+  }
+
   .hero {
-    padding: 56px 0 64px;
+    padding: 56px 0 24px;
   }
 
   .nav-container {
@@ -1485,8 +1676,12 @@ a:hover {
 
   .hero-subtitle {
     font-size: 1rem;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     max-width: 100%;
+  }
+  
+  .hero-subtitle:last-child {
+    margin-bottom: 0;
   }
 
   .hero-actions {

@@ -5,6 +5,8 @@ import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import CTASection from "../../components/CTASection";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Hero from "../../components/Hero";
+import UnderlineSVG from "../../components/UnderlineSVG";
 
 const faqs = [
   {
@@ -96,21 +98,23 @@ export default function FAQ() {
     <main>
       <div className="hero-wrapper">
         <Header />
-        <section className="hero">
-          <div className="hero-shapes">
-            <div className="shape shape-circle-1"></div>
-            <div className="shape shape-circle-2"></div>
-            <div className="shape shape-circle-3"></div>
-            <div className="shape shape-pill shape-pill-1"></div>
-            <div className="shape shape-pill shape-pill-2"></div>
-          </div>
-          <div className="container">
-            <h1 className="hero-title">Straight answers.</h1>
-            <p className="hero-subtitle" style={{ maxWidth: '850px', margin: '0 auto' }}>
-              The real questions closers ask before they join. If something is missing, the application has a spot to ask it.
-            </p>
-          </div>
-        </section>
+        <Hero 
+          titleNode={
+            <h1 className="hero-title">
+              <span className="hero-title-text">Straight </span>
+              <span style={{ position: 'relative', display: 'inline-block', zIndex: 1, whiteSpace: 'nowrap' }}>
+                <span className="hero-title-text" style={{ position: 'relative', zIndex: 2 }}>answers.</span>
+                <UnderlineSVG style={{ position: 'absolute', bottom: '-8px', left: 0, width: '100%', height: '14px', zIndex: -1 }} />
+              </span>
+            </h1>
+          }
+          subtitle="The real questions closers ask before they join. If something is missing, the application has a spot to ask it."
+          showShapes={false}
+          showActions={false}
+          showTrust={false}
+          paddingTop="160px"
+          subtitleMaxWidth="850px"
+        />
       </div>
 
       <section className="section faq-section">
@@ -129,7 +133,12 @@ export default function FAQ() {
                     onClick={() => toggleFaq(index)}
                     aria-expanded={isOpen}
                   >
-                    <span className="faq-question-text">{faq.question}</span>
+                    <div className="faq-question-content">
+                      <div className="faq-left-icon">
+                        <MessageCircleQuestion size={20} />
+                      </div>
+                      <span className="faq-question-text">{faq.question}</span>
+                    </div>
                     <ChevronDown className="faq-icon" size={20} />
                   </button>
                   <div className="faq-answer-wrapper" style={{ 

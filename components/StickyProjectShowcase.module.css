@@ -98,6 +98,15 @@
   position: relative;
   background-color: #6b7280; /* Default fallback */
   overflow: hidden;
+  margin-top: -1px; /* Avoid gap between box and image */
+  
+  /* Pixelated corner on bottom-right only */
+  clip-path: polygon(
+    0 0, 
+    100% 0, 
+    100% calc(100% - 12px), calc(100% - 4px) calc(100% - 12px), calc(100% - 4px) calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) calc(100% - 4px), calc(100% - 12px) 100%, 
+    0 100%
+  );
 }
 
 .imageContainer::after {
@@ -133,15 +142,6 @@
   background-color: #1a1a1a;
   color: #ffffff;
   padding: 32px 32px;
-  margin-top: -1px; /* Avoid gap between image and box */
-  
-  /* Pixelated corner on bottom-right only */
-  clip-path: polygon(
-    0 0, 
-    100% 0, 
-    100% calc(100% - 12px), calc(100% - 4px) calc(100% - 12px), calc(100% - 4px) calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) calc(100% - 4px), calc(100% - 12px) 100%, 
-    0 100%
-  );
 }
 
 .cardTitle {

@@ -57,7 +57,7 @@ export default function Hero({
       <div className="container">
         {titleNode}
         
-        <p className="hero-subtitle" style={{ maxWidth: subtitleMaxWidth, margin: '0 auto 40px' }}>
+        <p className="hero-subtitle" style={{ maxWidth: subtitleMaxWidth }}>
           {subtitle}
         </p>
         
