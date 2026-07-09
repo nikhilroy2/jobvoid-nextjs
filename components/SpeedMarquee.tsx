@@ -2,18 +2,23 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './SpeedMarquee.module.css';
 
-const words = [
-  "DESIGN",
-  "CSS3",
-  "JAVASCRIPT",
-  "GSAP",
-  "FIGMA",
-  "REACT",
-  "NEXT.JS",
-  "TAILWIND"
+export type MarqueeItem = {
+  text: string;
+  icon: React.ReactNode;
+};
+
+const defaultItems: MarqueeItem[] = [
+  { text: "DESIGN", icon: "×" },
+  { text: "CSS3", icon: "×" },
+  { text: "JAVASCRIPT", icon: "×" },
+  { text: "GSAP", icon: "×" },
+  { text: "FIGMA", icon: "×" },
+  { text: "REACT", icon: "×" },
+  { text: "NEXT.JS", icon: "×" },
+  { text: "TAILWIND", icon: "×" }
 ];
 
-export default function SpeedMarquee() {
+export default function SpeedMarquee({ items = defaultItems }: { items?: MarqueeItem[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -87,17 +92,17 @@ export default function SpeedMarquee() {
   // Content block duplicated to create the seamless loop
   const content = (
     <>
-      {words.map((word, i) => (
+      {items.map((item, i) => (
         <React.Fragment key={i}>
-          <span className={styles.word}>{word}</span>
-          <span className={styles.separator}>×</span>
+          <span className={styles.word}>{item.text}</span>
+          <span className={styles.separator} style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
         </React.Fragment>
       ))}
       {/* We add it again to make sure the single group is long enough to fill the screen */}
-      {words.map((word, i) => (
+      {items.map((item, i) => (
         <React.Fragment key={`extra-${i}`}>
-          <span className={styles.word}>{word}</span>
-          <span className={styles.separator}>×</span>
+          <span className={styles.word}>{item.text}</span>
+          <span className={styles.separator} style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
         </React.Fragment>
       ))}
     </>

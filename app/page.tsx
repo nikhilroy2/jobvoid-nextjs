@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  Banknote, 
-  CalendarDays, 
-  BriefcaseBusiness, 
+import {
+  ArrowRight,
+  Banknote,
+  CalendarDays,
+  BriefcaseBusiness,
   TrendingUp,
   PhoneCall,
   Target,
@@ -16,6 +16,13 @@ import CTASection from "../components/CTASection";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FeatureSection from "../components/FeatureSection";
+import PixelButton from "../components/PixelButton";
+import UnderlineSVG from "../components/UnderlineSVG";
+import SpeedMarquee from "../components/SpeedMarquee";
+import AnimatedTitle from "../components/AnimatedTitle";
+import ProjectShowcase from "../components/ProjectShowcase";
+import StickyProjectShowcase from "../components/StickyProjectShowcase";
+import WorkingProcess from "../components/WorkingProcess";
 
 export default function Home() {
   return (
@@ -26,37 +33,29 @@ export default function Home() {
         <Header />
 
         {/* Hero Section */}
-        <section className="hero">
-          <div className="hero-shapes">
-            <div className="shape shape-circle-1"></div>
-            <div className="shape shape-circle-2"></div>
-            <div className="shape shape-circle-3"></div>
-            <div className="shape-pill shape-pill-1"></div>
-            <div className="shape-pill shape-pill-2"></div>
-            <div className="shape-dots shape-dots-1"></div>
-            <div className="shape-dots shape-dots-2"></div>
-            <svg className="shape-wave shape-wave-1" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 50 Q 50 0, 100 50 T 200 50" stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-            <svg className="shape-wave shape-wave-2" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 50 Q 50 100, 100 50 T 200 50" stroke="#a78bfa" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-          </div>
+        <section className="hero" style={{ paddingTop: '140px' }}>
           <div className="container">
-            <h1 className="hero-title">Close B2B deals. Get paid every Friday. Work on your terms.</h1>
+            <h1 className="hero-title">
+              <span className="hero-title-text">Close </span>
+              <span style={{ position: 'relative', display: 'inline-block', zIndex: 1, whiteSpace: 'nowrap' }}>
+                <span className="hero-title-text" style={{ position: 'relative', zIndex: 2 }}>B2B deals.</span>
+                <UnderlineSVG style={{ position: 'absolute', bottom: '-8px', left: 0, width: '100%', height: '14px', zIndex: -1 }} />
+              </span>{' '}
+              <span className="hero-title-text">Get paid every Friday. Work on your terms.</span>
+            </h1>
             <p className="hero-subtitle">
               Jobvoid places <span className="text-highlight">aggressive closers</span> with AI companies that already have the product, the budget, and the demand. We hand you the <span className="text-bold">leads, the script, and a dialer account</span>. You bring the close.
             </p>
             <div className="hero-actions">
-              <button className="btn btn-primary" style={{ padding: '16px 36px', fontSize: '1.125rem' }}>
-                Start Closing <ArrowRight size={20} />
-              </button>
-              <button className="btn btn-secondary" style={{ padding: '16px 36px', fontSize: '1.125rem' }}>
+              <PixelButton>
+                Start Closing
+              </PixelButton>
+              <PixelButton variant="outline">
                 See how the pay works
-              </button>
+              </PixelButton>
             </div>
             <div className="hero-trust" style={{ marginTop: '24px' }}>
-              <CheckCircle2 size={16} className="text-accent" color="var(--accent-color)" /> 
+              <CheckCircle2 size={16} className="text-accent" color="var(--accent-color)" />
               Closing for AI clients since 2020. Based in Houston, Texas.
             </div>
           </div>
@@ -64,55 +63,31 @@ export default function Home() {
       </div>
 
       {/* Stat strip */}
-      <div className="container">
-        <div className="stat-strip">
-          <div className="stat-item">
-            <div className="stat-icon-wrapper">
-              <BriefcaseBusiness size={24} />
-            </div>
-            <div className="stat-value">2020</div>
-            <div className="stat-label">Closing for AI clients since</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-icon-wrapper">
-              <Banknote size={24} />
-            </div>
-            <div className="stat-value">$1,500 to $5,000</div>
-            <div className="stat-label">The deals you'll be closing</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-icon-wrapper">
-              <CalendarDays size={24} />
-            </div>
-            <div className="stat-value">Every Friday</div>
-            <div className="stat-label">Paid for the week before</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-icon-wrapper">
-              <TrendingUp size={24} />
-            </div>
-            <div className="stat-value">3 months</div>
-            <div className="stat-label">Recurring commission on every sale</div>
-          </div>
-        </div>
-      </div>
+      <SpeedMarquee items={[
+        { text: "CLOSING SINCE 2020", icon: <BriefcaseBusiness size="1em" color="#3b82f6" /> },
+        { text: "$1.5K - $5K DEALS", icon: <Banknote size="1em" color="#10b981" /> },
+        { text: "PAID EVERY FRIDAY", icon: <CalendarDays size="1em" color="#f43f5e" /> },
+        { text: "3 MONTHS RECURRING", icon: <TrendingUp size="1em" color="#0ea5e9" /> }
+      ]} />
 
       {/* Section: The opportunity */}
-      <FeatureSection
-        eyebrowText="What this is"
-        eyebrowIcon={<Target size={16} />}
-        title="A real closing seat with an AI client, not a job board listing."
-        imageSrc="/what_this_is.png"
-        imageAlt="What this is"
-        isGlass={true}
-      >
-        <p className="section-body">
-          Jobvoid is a sales recruiting firm in Houston. Since 2020 we have done one thing: <span className="text-bold">find closers and put them on the phones</span> for AI companies that need pipeline. We are not a marketplace and we are not posting other people's jobs. When you join, you are <span className="text-highlight">closing for our current client</span>, and we run everything behind you so your only job is the conversation.
-        </p>
-        <p className="section-body">
-          The client sells a <span className="text-bold">one-for-you AI visibility service</span> to businesses. You will be calling companies that should be buying it and most of the time do not even know they need it yet. That gap is your opening, and it is <span className="text-highlight">why these calls convert</span>.
-        </p>
-      </FeatureSection>
+      <section className="section section-glass">
+        <div className="container">
+          <AnimatedTitle text1="What" text2="this is" />
+
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginTop: '-20px' }}>
+            <h3 style={{ fontSize: '2rem', marginBottom: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>
+              A real closing seat with an AI client, not a job board listing.
+            </h3>
+            <p className="section-body" style={{ marginBottom: '24px', fontSize: '1.15rem' }}>
+              Jobvoid is a sales recruiting firm in Houston. Since 2020 we have done one thing: <span className="text-bold">find closers and put them on the phones</span> for AI companies that need pipeline. We are not a marketplace and we are not posting other people's jobs. When you join, you are <span className="text-highlight">closing for our current client</span>, and we run everything behind you so your only job is the conversation.
+            </p>
+            <p className="section-body" style={{ fontSize: '1.15rem' }}>
+              The client sells a <span className="text-bold">one-for-you AI visibility service</span> to businesses. You will be calling companies that should be buying it and most of the time do not even know they need it yet. That gap is your opening, and it is <span className="text-highlight">why these calls convert</span>.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Section: Why closers take this seriously */}
       <section className="section" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -120,180 +95,70 @@ export default function Home() {
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          backgroundImage: 'url(/the_offer.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.25,
+          background: '#bcdbed98',
           zIndex: 0
         }} />
-        
+
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 64px' }}>
-            <span className="eyebrow"><BriefcaseBusiness size={16} /> The offer</span>
-            <h2 className="section-title">Everything a closer wants, and nothing they hate.</h2>
+          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 0' }}>
+            <AnimatedTitle text1="The" text2="Offer" />
+            <h3 style={{ fontSize: '2rem', marginTop: '24px', marginBottom: '64px', fontWeight: 700, letterSpacing: '-0.02em' }}>
+              Everything a closer wants, and nothing they hate.
+            </h3>
           </div>
-          <div className="cards-grid">
-            <div className="card">
-              <div className="card-icon"><Banknote size={24} /></div>
-              <h3 className="card-title">Paid every Friday.</h3>
-              <p className="card-body">Close this week, get paid next Friday for it. No net-30, no waiting on the client, no chasing anyone for your money.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon"><PhoneCall size={24} /></div>
-              <h3 className="card-title">Leads and dialer provided.</h3>
-              <p className="card-body">We give you a dialer account and a list of businesses worth calling. You log in and dial. No list building, no buying data, no prospecting grind.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon"><FileCheck size={24} /></div>
-              <h3 className="card-title">A script that already closes.</h3>
-              <p className="card-body">You get the framework, the qualifying questions, and the objection answers built from real calls. You bring the delivery.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon"><TrendingUp size={24} /></div>
-              <h3 className="card-title">Recurring commission for 3 months.</h3>
-              <p className="card-body">Every sale pays you a flat commission up front, plus a small recurring slice each month for three months.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon"><Target size={24} /></div>
-              <h3 className="card-title">Real earnings.</h3>
-              <p className="card-body">An average closer here earns around $5,000 a month. The strong ones earn over $10,000. The ceiling is yours to find.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon"><Clock size={24} /></div>
-              <h3 className="card-title">Your hours, your pace.</h3>
-              <p className="card-body">Nobody clocks you in. We count closes, not minutes in a seat.</p>
-            </div>
-          </div>
+
+          <ProjectShowcase hideTitle items={[
+            {
+              title: "Paid every Friday.",
+              description: "Close this week, get paid next Friday for it. No net-30, no waiting on the client, no chasing anyone for your money.",
+              icon: <Banknote size={96} strokeWidth={1.5} color="#10b981" />,
+              color: "#10b98144",
+              aspect: "landscape"
+            },
+            {
+              title: "Leads and dialer provided.",
+              description: "We give you a dialer account and a list of businesses worth calling. You log in and dial. No list building, no buying data, no prospecting grind.",
+              icon: <PhoneCall size={96} strokeWidth={1.5} color="#3b82f6" />,
+              color: "#3b83f64d",
+              aspect: "wide"
+            },
+            {
+              title: "A script that already closes.",
+              description: "You get the framework, the qualifying questions, and the objection answers built from real calls. You bring the delivery.",
+              icon: <FileCheck size={96} strokeWidth={1.5} color="#f59e0b" />,
+              color: "#f59f0b46",
+              aspect: "landscape"
+            },
+            {
+              title: "Recurring commission for 3 months.",
+              description: "Every sale pays you a flat commission up front, plus a small recurring slice each month for three months.",
+              icon: <TrendingUp size={96} strokeWidth={1.5} color="#0ea5e9" />,
+              color: "#0ea4e94d",
+              aspect: "wide"
+            },
+            {
+              title: "Real earnings.",
+              description: "An average closer here earns around $5,000 a month. The strong ones earn over $10,000. The ceiling is yours to find.",
+              icon: <Target size={96} strokeWidth={1.5} color="#ec4899" />,
+              color: "#ec489a57",
+              aspect: "landscape"
+            },
+            {
+              title: "Your hours, your pace.",
+              description: "Nobody clocks you in. We count closes, not minutes in a seat.",
+              icon: <Clock size={96} strokeWidth={1.5} color="#8b5cf6" />,
+              color: "#8a5cf646",
+              aspect: "wide"
+            }
+          ]} />
         </div>
       </section>
 
-      {/* Section: The product you'll sell */}
-      <FeatureSection
-        eyebrowText="What you're selling"
-        eyebrowIcon={<Rocket size={16} />}
-        title="AI visibility, the thing every business will want and most don't understand yet."
-        imageSrc="/what_you_re_selling.png"
-        imageAlt="What you're selling"
-        isReversed={true}
-        isGlass={true}
-      >
-        <p className="section-body">
-          Buyers have started asking <span className="text-highlight">AI assistants like ChatGPT</span> who the best provider is instead of scrolling a search page. The AI names a short list. If a business is on that list, the lead is theirs. If they are not, they never even knew the buyer was looking.
-        </p>
-        <p className="section-body">
-          Our client fixes that. A dedicated backend team does the work to get a business <span className="text-bold">referenced and recommended across AI platforms</span>. Think of it like SEO, but pointed at AI answers instead of search rankings, and handled entirely for the customer. The business pays a monthly subscription and the team does the work. Visibility is earned through what the team actually does, not promised out of thin air.
-        </p>
-        <p className="section-body">
-          You are not selling a gadget nobody asked for. You are calling a business owner, showing them they are <span className="text-highlight">invisible in the exact place their next customer is deciding</span>, and closing them on the team that makes them visible.
-        </p>
-      </FeatureSection>
-
-      {/* Section: Who buys it? */}
-      <FeatureSection
-        eyebrowText="Who you'll call"
-        eyebrowIcon={<Target size={16} />}
-        title="High-ticket businesses that live and die on being chosen."
-        imageSrc="/who_you_ll_call.png"
-        imageAlt="Who you'll call"
-        isGlass={false}
-      >
-        <p className="section-body">
-          The best customers are service businesses where <span className="text-highlight">a single new client is worth thousands</span>, so visibility pays for itself fast. Think cosmetic surgeons, med spas, dentists, aesthetic and elective medical practices, law firms, and other high-margin local providers. When one new patient or client is worth several thousand dollars, <span className="text-bold">getting named by an AI assistant instead of a competitor is an easy yes</span> once they understand the stakes. Your job is to make them understand the stakes.
-        </p>
-      </FeatureSection>
-
-      {/* Section: The honest part */}
-      <FeatureSection
-        eyebrowText="Read this before you apply"
-        eyebrowIcon={<CheckCircle2 size={16} />}
-        title="Commission only. Cold calling. Experience required."
-        imageSrc="/read_this_before.png"
-        imageAlt="Read this before you apply"
-        isReversed={true}
-        isGlass={true}
-      >
-        <p className="section-body">
-          There is no base, no draw, and no hourly. <span className="text-highlight">You earn on what you close.</span> These are cold calls, not warm inbound leads, though the list is targeted at businesses that genuinely fit. And you need <span className="text-bold">real B2B closing experience</span>, because this is not where you learn to sell.
-        </p>
-        <p className="section-body">
-          We put this on the home page on purpose. The people who can handle it should keep reading. The people who cannot should save themselves the time. We would rather be blunt now than waste your week later.
-        </p>
-      </FeatureSection>
-
-      {/* Section: Quick earnings picture */}
-      <FeatureSection
-        eyebrowText="The money"
-        eyebrowIcon={<Banknote size={16} />}
-        title="Flat commission on every close, plus a recurring tail for three months."
-        imageSrc="/the_money.png"
-        imageAlt="The money"
-        isGlass={false}
-      >
-        <p className="section-body">
-          Every sale pays you a <span className="text-bold">flat commission, paid that Friday.</span> On top of that, each sale carries a <span className="text-highlight">small recurring percentage that keeps paying for three months</span>, as long as you stay active. Active means you close at least one new sale that month. Keep closing and you stack fresh commissions on top of the recurring tail from your recent sales. The closers who treat this like their own business are the ones clearing five figures.
-        </p>
-        <div style={{ marginTop: '32px' }}>
-          <Link href="/pay" className="btn-link">
-            See the full pay breakdown <ArrowRight size={18} />
-          </Link>
-        </div>
-      </FeatureSection>
+      {/* Combined Section: Who you'll call, Read this before you apply, The money */}
+      <StickyProjectShowcase />
 
       {/* Section: How it works, condensed */}
-      <section className="section section-glass">
-        <div className="container section-inner">
-          <span className="eyebrow"><Clock size={16} /> The process</span>
-          <h2 className="section-title">From application to your first Friday check.</h2>
-          
-          <div className="steps-list">
-            <div className="step-item">
-              <div className="step-number">1</div>
-              <div className="step-content">
-                <h3 className="step-title">Apply.</h3>
-                <p className="step-desc">A few minutes. We screen on closing experience, nothing else.</p>
-              </div>
-            </div>
-            
-            <div className="step-item">
-              <div className="step-number">2</div>
-              <div className="step-content">
-                <h3 className="step-title">Get approved.</h3>
-                <p className="step-desc">A team reviews your application and grants access within 1 to 4 business days.</p>
-              </div>
-            </div>
-            
-            <div className="step-item">
-              <div className="step-number">3</div>
-              <div className="step-content">
-                <h3 className="step-title">Get set up.</h3>
-                <p className="step-desc">We create your dialer account and walk you through the client, the product, and the script.</p>
-              </div>
-            </div>
-            
-            <div className="step-item">
-              <div className="step-number">4</div>
-              <div className="step-content">
-                <h3 className="step-title">Start closing.</h3>
-                <p className="step-desc">You dial your list, work the script, and log every close.</p>
-              </div>
-            </div>
-            
-            <div className="step-item">
-              <div className="step-number">5</div>
-              <div className="step-content">
-                <h3 className="step-title">Get paid Friday.</h3>
-                <p className="step-desc">Your closes pay out the following Friday, then recur for three months while you stay active.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div style={{ marginTop: '48px', textAlign: 'center' }}>
-            <Link href="#" className="btn-link" style={{ justifyContent: 'center' }}>
-              See the full process <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <WorkingProcess />
 
       {/* Final call to action */}
       <CTASection />

@@ -3,34 +3,36 @@ import React, { useEffect, useRef, useState } from 'react';
 import PixelButton from './PixelButton';
 import styles from './StickyProjectShowcase.module.css';
 
+import AnimatedTitle from './AnimatedTitle';
+
 const projects = [
   {
+    id: 0,
+    tag: "What you're selling",
+    title: "AI visibility, the thing every business will want and most don't understand yet.",
+    desc: "Buyers have started asking AI assistants like ChatGPT who the best provider is instead of scrolling a search page. The AI names a short list. If a business is on that list, the lead is theirs. If they are not, they never even knew the buyer was looking.\n\nOur client fixes that. A dedicated backend team does the work to get a business referenced and recommended across AI platforms. Think of it like SEO, but pointed at AI answers instead of search rankings, and handled entirely for the customer. The business pays a monthly subscription and the team does the work. Visibility is earned through what the team actually does, not promised out of thin air.\n\nYou are not selling a gadget nobody asked for. You are calling a business owner, showing them they are invisible in the exact place their next customer is deciding, and closing them on the team that makes them visible.",
+    image: "/what_you_re_selling.png"
+  },
+  {
     id: 1,
-    tag: "Web Design",
-    title: "Nova Landing",
-    desc: "Minimalist product landing page built for startups focused on engagement.",
-    color: "#6b7280"
+    tag: "Who you'll call",
+    title: "High-ticket businesses that live and die on being chosen.",
+    desc: "The best customers are service businesses where a single new client is worth thousands, so visibility pays for itself fast. Think cosmetic surgeons, med spas, dentists, aesthetic and elective medical practices, law firms, and other high-margin local providers. When one new patient or client is worth several thousand dollars, getting named by an AI assistant instead of a competitor is an easy yes once they understand the stakes. Your job is to make them understand the stakes.",
+    image: "/who_you_ll_call.png"
   },
   {
     id: 2,
-    tag: "App Development",
-    title: "Finance Tracker",
-    desc: "A comprehensive dashboard for tracking personal expenses and investments.",
-    color: "#4b5563"
+    tag: "Read this before you apply",
+    title: "Commission only. Cold calling. Experience required.",
+    desc: "There is no base, no draw, and no hourly. You earn on what you close. These are cold calls, not warm inbound leads, though the list is targeted at businesses that genuinely fit. And you need real B2B closing experience, because this is not where you learn to sell. We put this on the home page on purpose. The people who can handle it should keep reading. The people who cannot should save themselves the time.",
+    image: "/read_this_before.png"
   },
   {
     id: 3,
-    tag: "Branding",
-    title: "Eco Store",
-    desc: "Complete brand identity and e-commerce platform for sustainable products.",
-    color: "#374151"
-  },
-  {
-    id: 4,
-    tag: "UI/UX",
-    title: "Healthcare Portal",
-    desc: "Intuitive patient management system designed for modern clinics.",
-    color: "#1f2937"
+    tag: "The money",
+    title: "Flat commission on every close, plus a recurring tail.",
+    desc: "Every sale pays you a flat commission, paid that Friday. On top of that, each sale carries a small recurring percentage that keeps paying for three months, as long as you stay active. Active means you close at least one new sale that month. Keep closing and you stack fresh commissions on top of the recurring tail from your recent sales.",
+    image: "/the_money.png"
   }
 ];
 
@@ -70,8 +72,8 @@ function ScrollCard({ project }: { project: any }) {
       ref={ref} 
       className={`${styles.cardWrapper} ${isVisible ? styles.visible : ''}`}
     >
-      <div className={styles.imageContainer} style={{ backgroundColor: project.color }}>
-         {/* Placeholder Image container */}
+      <div className={styles.imageContainer}>
+         <img src={project.image} alt={project.title} className={styles.projectImage} />
          <div className={styles.imageTag}>{project.tag}</div>
       </div>
       <div className={styles.cardInfo}>
@@ -91,17 +93,16 @@ export default function StickyProjectShowcase() {
         <div className={styles.leftColumn}>
           <div className={styles.stickyContent}>
             <div className={styles.labelWrapper}>
-              <div className={styles.label}>CRAFTED WITH CODE</div>
+              <div className={styles.label}>NEED TO KNOW</div>
               <div className={styles.dashedLine}></div>
             </div>
             
-            <h2 className={styles.title}>OUR PROJECTS</h2>
-            <p className={styles.description}>
-              Clarity fuels trust — here's everything you might want to know before we start building together.
-            </p>
-            <div className={styles.buttonWrapper}>
-              <PixelButton>Get Started</PixelButton>
+            <div style={{ marginLeft: '-15px', marginBottom: '20px' }}>
+              <AnimatedTitle text1="The" text2="Details" />
             </div>
+            <p className={styles.description}>
+              Clarity fuels trust — here's exactly who you'll call, what to expect, and how the money works before you start dialing.
+            </p>
           </div>
         </div>
 

@@ -1,15 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import PixelButton from "./PixelButton";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [headerState, setHeaderState] = useState<'top' | 'hidden' | 'sticky'>('top');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setHeaderState('top');
+      } else if (window.scrollY >= 100 && window.scrollY < 400) {
+        setHeaderState('hidden');
+      } else {
+        setHeaderState('sticky');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="container">
-      <nav className="nav-container">
+    <header style={{ 
+      position: headerState === 'top' ? 'absolute' : 'fixed', 
+      top: 0, 
+      left: 0, 
+      right: 0, 
+      zIndex: 999,
+      transform: headerState === 'hidden' ? 'translateY(-150%)' : 'translateY(0)',
+      transition: headerState === 'top' ? 'none' : 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+    }}>
+      <div className="container">
+        <nav className="nav-container">
         <Link href="/" className="nav-brand">Jobvoid</Link>
         
         {/* Desktop Links */}
@@ -23,9 +49,9 @@ export default function Header() {
         
         {/* Desktop Button */}
         <div className="nav-actions">
-          <Link href="/apply" className="btn btn-primary nav-btn-desktop">
-            Apply to close <ArrowRight size={18} />
-          </Link>
+          <PixelButton href="/apply" className="nav-btn-desktop" withArrow>
+            Apply to close
+          </PixelButton>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -45,12 +71,15 @@ export default function Header() {
             <Link href="/pay" onClick={() => setIsMobileMenuOpen(false)}>Pay</Link>
             <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
             <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-            <Link href="/apply" className="btn btn-primary" style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}>
-              Apply to close <ArrowRight size={18} />
-            </Link>
+            <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
+              <PixelButton href="/apply" className="nav-btn-mobile" withArrow>
+                Apply to close
+              </PixelButton>
+            </div>
           </div>
         )}
       </nav>
-    </div>
+      </div>
+    </header>
   );
 }

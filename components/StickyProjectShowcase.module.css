@@ -97,6 +97,25 @@
   aspect-ratio: 16/10;
   position: relative;
   background-color: #6b7280; /* Default fallback */
+  overflow: hidden;
+}
+
+.imageContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .imageTag {
@@ -136,6 +155,7 @@
   color: #9ca3af;
   margin: 0;
   line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 /* RESPONSIVE */

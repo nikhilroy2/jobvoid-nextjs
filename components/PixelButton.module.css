@@ -6,7 +6,7 @@
   letter-spacing: 0.05em;
   padding: 12px 32px;
   transition: all 0.2s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -33,8 +33,62 @@
   font-size: 1.125rem;
   font-weight: 700;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Corrects vertical alignment of icon and text */
+}
+
+.arrowContainer {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.arrow1 {
+  position: absolute;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+}
+
+.arrow2 {
+  position: absolute;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-150%);
+}
+
+.button:hover .arrow1 {
+  transform: translateX(150%);
+}
+
+.button:hover .arrow2 {
+  transform: translateX(0);
 }
 
 .button:hover .text {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.button.outline {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px #1a1a1a;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='none' stroke='%231a1a1a' stroke-width='4' d='M-2,12 L4,12 L4,8 L8,8 L8,4 L12,4 L12,-2'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='none' stroke='%231a1a1a' stroke-width='4' d='M4,18 L4,12 L8,12 L8,8 L12,8 L12,4 L18,4'/%3E%3C/svg%3E");
+  background-position: top left, bottom right;
+  background-repeat: no-repeat;
+}
+
+.button.outline .text {
+  color: #1a1a1a;
+}
+
+.button.outline:hover {
+  background-color: rgba(26, 26, 26, 0.05);
+}
+
+.button.outline:hover .text {
+  text-shadow: none;
 }

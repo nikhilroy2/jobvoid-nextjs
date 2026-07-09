@@ -26,9 +26,13 @@
   top: 140px; /* Offset from top of viewport */
   width: 100%;
   aspect-ratio: 1/1;
-  background: linear-gradient(135deg, #f97316, #ea580c); /* Orange placeholder */
+  background: #f3f4f6; /* Light gray background */
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 /* RIGHT COLUMN */

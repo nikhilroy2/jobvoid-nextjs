@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import PixelButton from "./PixelButton";
 
 interface CTASectionProps {
   headline?: string;
@@ -51,16 +52,20 @@ export default function CTASection({
           </div>
         </div>
 
-        <div className="cta-content">
+        {/* Dark overlay specifically requested by user */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.4)', zIndex: 1 }}></div>
+
+        <div className="cta-content" style={{ position: 'relative', zIndex: 2 }}>
           <h2 className="cta-title">{headline}</h2>
           {body && (
             <p className="cta-body">
               {body}
             </p>
           )}
-          <Link href={buttonHref} className="btn btn-primary" style={{ backgroundColor: '#fff', color: 'var(--accent-hover)', display: 'inline-flex', textDecoration: 'none' }}>
-            {buttonText} <ArrowRight size={18} />
-          </Link>
+          {/* Button using PixelButton */}
+          <PixelButton href={buttonHref} withArrow>
+            {buttonText}
+          </PixelButton>
         </div>
       </section>
     </div>

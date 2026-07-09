@@ -1,7 +1,5 @@
 .section {
-  background-color: #1c1c1c;
-  padding: 100px 40px;
-  color: #ffffff;
+  padding: 40px 20px 100px;
   font-family: system-ui, -apple-system, sans-serif;
   width: 100%;
   overflow: hidden;
@@ -93,14 +91,24 @@
 }
 
 .card4 {
-  width: 35%;
-  margin-left: 10%; /* Indent to fit visually between col1 and col2 */
+  width: 30%;
+  margin-top: 20px;
+}
+
+.card5Wrapper {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  margin-top: -40px; /* pull up */
 }
 
 .card5 {
-  width: 25%;
-  margin-right: 5%; /* Align visually below col3 */
-  margin-top: 100px; /* Push Sketching card down */
+  width: 100%;
+}
+
+.card6 {
+  width: 30%;
+  margin-top: 80px; /* push down */
 }
 
 /* CARD STYLES */
@@ -109,15 +117,18 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  background-color: #2a2a2a;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
 }
 
 .imageBox {
-  background-color: #2a2a2a;
+  background-color: #1c1c1c;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666666;
   width: 100%;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -125,7 +136,6 @@
 
 .imageBox:hover {
   transform: translateY(-4px);
-  color: #a3e635;
 }
 
 .imageBox.landscape {
@@ -143,12 +153,19 @@
 }
 
 .cardTitle {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
-  flex: 1;
   color: #ffffff;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 8px;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .arrowIcon {
@@ -180,12 +197,12 @@
   }
   
   /* Flatten the DOM structure for the grid using display: contents */
-  .topRow, .bottomRow, .card2Wrapper {
+  .topRow, .bottomRow, .card2Wrapper, .card5Wrapper {
     display: contents;
   }
 
   /* Reset all widths and margins so they fill grid cells */
-  .card1, .card2, .card3, .card4, .card5 {
+  .card1, .card2, .card3, .card4, .card5, .card6 {
     width: 100%;
     margin: 0;
   }
