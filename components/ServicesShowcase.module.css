@@ -13,14 +13,10 @@
   width: 100%;
   background-color: #ffffff;
   color: #111111;
-}
-
-@media (min-width: 1025px) {
-  .stickyWrapper {
-    position: sticky;
-    top: 120px;
-    height: max-content;
-  }
+  position: sticky;
+  top: 120px;
+  height: max-content;
+  z-index: 10;
 }
 
 .sectionPadding {
@@ -85,43 +81,57 @@
 }
 
 .sidebarItem {
-  background-color: #f3f4f6;
   color: #111111;
-  opacity: 0.3; /* Faded by default */
-  transition: opacity 0.3s ease;
+  opacity: 0.5; /* Faded by default */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 24px 32px;
   cursor: pointer;
-  
-  /* Pixelated corners */
-  clip-path: polygon(
-    0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, 
-    calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 
-    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 
-    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
-  );
+  border-radius: 0;
+  border: 1px solid transparent;
+  background-color: transparent;
 }
 
 .sidebarItem:hover {
-  opacity: 0.6;
+  opacity: 0.8;
+  background-color: #f9fafb;
 }
 
 .sidebarItem.active {
   opacity: 1; /* Fully visible when active */
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
 .sidebarTitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  margin: 0 0 8px 0;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
 .sidebarDesc {
-  font-size: 0.95rem;
-  color: #4b5563;
+  font-size: 1rem;
+  color: #6b7280;
   margin: 0;
   line-height: 1.5;
+}
+
+.sidebarItemHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.sidebarIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* RIGHT CONTENT (SINGLE CARD REPLACES) */
@@ -189,5 +199,71 @@
   
   .content {
     width: 100%;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+
+  .stickyWrapper {
+    top: 80px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .sidebarList {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0;
+    gap: 0;
+    margin: 0;
+  }
+  
+  .sidebarList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebarItem {
+    flex: 1 1 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .sidebarItemHeader {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .sidebarIcon {
+    width: 100%;
+    height: 48px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    background-color: #f9fafb !important;
+  }
+
+  .sidebarItem.active .sidebarIcon {
+    background-color: #ffffff !important;
+    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .sidebarTitle {
+    display: none;
+  }
+  
+  .sidebarDesc {
+    display: none;
   }
 }

@@ -5,7 +5,15 @@ import styles from './StickyProjectShowcase.module.css';
 
 import AnimatedTitle from './AnimatedTitle';
 
-const projects = [
+export interface ProjectItem {
+  id: number;
+  tag: string;
+  title: string;
+  desc: React.ReactNode;
+  image: string;
+}
+
+const defaultProjects: ProjectItem[] = [
   {
     id: 0,
     tag: "What you're selling",
@@ -78,13 +86,27 @@ function ScrollCard({ project }: { project: any }) {
       </div>
       <div className={styles.cardInfo}>
          <h3 className={styles.cardTitle}>{project.title}</h3>
-         <p className={styles.cardDesc}>{project.desc}</p>
+         <div className={styles.cardDesc}>{project.desc}</div>
       </div>
     </div>
   );
 }
 
-export default function StickyProjectShowcase() {
+export interface StickyProjectShowcaseProps {
+  label?: string;
+  titleText1?: string;
+  titleText2?: string;
+  description?: string;
+  projects?: ProjectItem[];
+}
+
+export default function StickyProjectShowcase({
+  label = "NEED TO KNOW",
+  titleText1 = "The",
+  titleText2 = "Details",
+  description = "Clarity fuels trust — here's exactly who you'll call, what to expect, and how the money works before you start dialing.",
+  projects = defaultProjects
+}: StickyProjectShowcaseProps) {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -93,15 +115,15 @@ export default function StickyProjectShowcase() {
         <div className={styles.leftColumn}>
           <div className={styles.stickyContent}>
             <div className={styles.labelWrapper}>
-              <div className={styles.label}>NEED TO KNOW</div>
+              <div className={styles.label}>{label}</div>
               <div className={styles.dashedLine}></div>
             </div>
             
             <div style={{ marginLeft: '-15px', marginBottom: '20px' }}>
-              <AnimatedTitle text1="The" text2="Details" />
+              <AnimatedTitle text1={titleText1} text2={titleText2} />
             </div>
             <p className={styles.description}>
-              Clarity fuels trust — here's exactly who you'll call, what to expect, and how the money works before you start dialing.
+              {description}
             </p>
           </div>
         </div>

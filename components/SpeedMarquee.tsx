@@ -4,6 +4,7 @@ import styles from './SpeedMarquee.module.css';
 
 export type MarqueeItem = {
   text: string;
+  subText?: string;
   icon: React.ReactNode;
 };
 
@@ -89,19 +90,32 @@ export default function SpeedMarquee({ items = defaultItems }: { items?: Marquee
     };
   }, []);
 
-  // Content block duplicated to create the seamless loop
   const content = (
     <>
       {items.map((item, i) => (
         <React.Fragment key={i}>
-          <span className={styles.word}>{item.text}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <span className={styles.word}>{item.text}</span>
+            {item.subText && (
+              <span style={{ fontSize: 'clamp(0.85rem, 2vw, 1.15rem)', color: '#a3a3a3', marginTop: '0', fontWeight: 500, letterSpacing: 'normal', fontFamily: 'system-ui, sans-serif' }}>
+                {item.subText}
+              </span>
+            )}
+          </div>
           <span className={styles.separator} style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
         </React.Fragment>
       ))}
       {/* We add it again to make sure the single group is long enough to fill the screen */}
       {items.map((item, i) => (
         <React.Fragment key={`extra-${i}`}>
-          <span className={styles.word}>{item.text}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <span className={styles.word}>{item.text}</span>
+            {item.subText && (
+              <span style={{ fontSize: 'clamp(0.85rem, 2vw, 1.15rem)', color: '#a3a3a3', marginTop: '0', fontWeight: 500, letterSpacing: 'normal', fontFamily: 'system-ui, sans-serif' }}>
+                {item.subText}
+              </span>
+            )}
+          </div>
           <span className={styles.separator} style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
         </React.Fragment>
       ))}

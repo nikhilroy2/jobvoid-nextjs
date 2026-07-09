@@ -5,10 +5,12 @@ import styles from './AnimatedTitle.module.css';
 
 export default function AnimatedTitle({ 
   text1 = "Working", 
-  text2 = "Process" 
+  text2 = "Process",
+  align = "center"
 }: { 
   text1?: string, 
-  text2?: string 
+  text2?: string,
+  align?: "center" | "left" | "left-on-mobile"
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -43,7 +45,7 @@ export default function AnimatedTitle({
   }, []);
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div ref={containerRef} className={`${styles.container} ${styles[align]}`}>
       <h2 
         className={styles.title} 
         style={{ '--progress': `${scrollProgress * 100}%` } as React.CSSProperties}

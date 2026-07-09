@@ -2,7 +2,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './ServicesShowcase.module.css';
 
-const services = [
+export interface ShowcaseItem {
+  id: string;
+  title: string;
+  desc: React.ReactNode;
+  tags?: string[];
+  color?: string;
+  icon?: React.ReactNode;
+  contentNode?: React.ReactNode;
+}
+
+const defaultServices: ShowcaseItem[] = [
   { 
     id: 'web-design', 
     title: 'WEB DESIGN', 
@@ -33,10 +43,35 @@ const services = [
   }
 ];
 
-export default function ServicesShowcase() {
+export interface ServicesShowcaseProps {
+  label?: string;
+  title?: string;
+  titleNode?: React.ReactNode;
+  items?: ShowcaseItem[];
+}
+
+export default function ServicesShowcase({
+  label = "DEVELOPMENT SERVICES",
+  title = "WHAT WE OFFER",
+  titleNode,
+  items = defaultServices
+}: ServicesShowcaseProps = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sidebarListRef = useRef<HTMLDivElement>(null);
   const isMobile = useRef(false);
+
+  useEffect(() => {
+    if (isMobile.current && sidebarListRef.current) {
+      const activeEl = sidebarListRef.current.children[activeIndex] as HTMLElement;
+      if (activeEl) {
+        sidebarListRef.current.scrollTo({
+          left: activeEl.offsetLeft - 20,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [activeIndex]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +84,7 @@ export default function ServicesShowcase() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isMobile.current || !containerRef.current) return;
+      if (!containerRef.current) return;
       
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -69,8 +104,8 @@ export default function ServicesShowcase() {
       let scrolled = (startTop - rect.top) / scrollableDistance;
       scrolled = Math.max(0, Math.min(1, scrolled));
       
-      let idx = Math.floor(scrolled * services.length);
-      if (idx >= services.length) idx = services.length - 1;
+      let idx = Math.floor(scrolled * items.length);
+      if (idx >= items.length) idx = items.length - 1;
       
       setActiveIndex(idx);
     };
@@ -90,41 +125,58 @@ export default function ServicesShowcase() {
       const scrollableDistance = containerRef.current.scrollHeight - window.innerHeight;
       
       // Target a point safely inside the percentage bracket for this index
-      const targetPercentage = (index + 0.1) / services.length; 
+      const targetPercentage = (index + 0.1) / items.length; 
       const targetScrollY = window.scrollY + rect.top - 120 + (scrollableDistance * targetPercentage);
       
       window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
     }
   };
 
-  const activeService = services[activeIndex];
+  const activeService = items[activeIndex];
 
   return (
-    <section ref={containerRef} className={styles.scrollContainer}>
-      <div className={styles.stickyWrapper}>
-        <div className={styles.sectionPadding}>
-          
+    <div className={styles.showcaseWrapper}>
+      <div className={styles.sectionPadding} style={{ paddingBottom: '40px' }}>
+        {titleNode ? (
+          titleNode
+        ) : (
           <div className={styles.header}>
             <div className={styles.labelWrapper}>
-              <div className={styles.label}>DEVELOPMENT SERVICES</div>
+              <div className={styles.label}>{label}</div>
               <div className={styles.dashedLine}></div>
             </div>
-            <h2 className={styles.title}>WHAT WE OFFER</h2>
+            <h2 className={styles.title}>{title}</h2>
           </div>
+        )}
+      </div>
 
-          <div className={styles.container}>
+      <section ref={containerRef} className={styles.scrollContainer} style={{ height: `calc(100vh + ${items.length * 40}vh)` }}>
+        <div className={styles.stickyWrapper}>
+          <div className={styles.sectionPadding} style={{ paddingTop: '20px' }}>
+
+            <div className={styles.container}>
             
             {/* Left Sidebar (Tabs) */}
             <div className={styles.sidebar}>
-              <div className={styles.sidebarList}>
-                {services.map((service, idx) => (
+              <div ref={sidebarListRef} className={styles.sidebarList}>
+                {items.map((service, idx) => (
                   <div 
                     key={service.id}
                     className={`${styles.sidebarItem} ${activeIndex === idx ? styles.active : ''}`}
                     onClick={() => handleTabClick(idx)}
                   >
-                    <h3 className={styles.sidebarTitle}>{service.title}</h3>
-                    <p className={styles.sidebarDesc}>{service.desc}</p>
+                    <div className={styles.sidebarItemHeader}>
+                      {service.icon && (
+                        <div className={styles.sidebarIcon} style={{ 
+                          background: service.color ? `${service.color}15` : '#f3f4f6', 
+                          color: service.color || '#4b5563', 
+                        }}>
+                          {service.icon}
+                        </div>
+                      )}
+                      <h3 className={styles.sidebarTitle}>{service.title}</h3>
+                    </div>
+                    <div className={styles.sidebarDesc}>{service.desc}</div>
                   </div>
                 ))}
               </div>
@@ -134,13 +186,17 @@ export default function ServicesShowcase() {
             <div className={styles.content}>
               {/* Key forces React to re-mount the div, triggering the CSS scale animation */}
               <div key={activeService.id} className={styles.activeCardWrapper}>
-                <div className={styles.cardImage} style={{ backgroundColor: activeService.color }}>
-                  <div className={styles.tags}>
-                    {activeService.tags.map((tag: string) => (
-                      <span key={tag} className={styles.tag}>{tag}</span>
-                    ))}
+                {activeService.contentNode ? (
+                  activeService.contentNode
+                ) : (
+                  <div className={styles.cardImage} style={{ backgroundColor: activeService.color }}>
+                    <div className={styles.tags}>
+                      {activeService.tags?.map((tag: string) => (
+                        <span key={tag} className={styles.tag}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             
@@ -149,5 +205,6 @@ export default function ServicesShowcase() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

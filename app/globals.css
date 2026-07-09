@@ -98,6 +98,15 @@ a:hover {
   position: sticky;
   top: 16px;
   z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.nav-container.scrolled {
+  background: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-color: #e5e5e5;
 }
 
 .nav-brand {
@@ -122,9 +131,23 @@ a:hover {
   color: var(--text-primary);
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
+}
+
+.desktop-text {
+  display: inline;
+}
+
+.mobile-text {
+  display: none;
 }
 
 .mobile-menu-toggle {
@@ -564,6 +587,10 @@ a:hover {
   line-height: 1.75;
 }
 
+.opportunity-content {
+  text-align: center;
+}
+
 .section-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -957,19 +984,21 @@ a:hover {
 }
 
 .cta-title {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 8vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.1;
 }
 
 .cta-body {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 4vw, 1.25rem);
   color: rgba(255, 255, 255, 0.9);
   max-width: 650px;
   margin: 0 auto 40px;
   font-weight: 500;
+  line-height: 1.6;
 }
 
 .cta-section .btn-primary {
@@ -1348,6 +1377,77 @@ a:hover {
   .quick-facts-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+  
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-right {
+    justify-content: center;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-visual {
+    max-width: 100%;
+  }
+  
+  .hero-floating-badge-1,
+  .hero-floating-badge-2 {
+    display: none;
+  }
+}
+
+/* Nav collapse breakpoint — before the nav gets too crowded */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-btn-desktop {
+    padding: 8px 16px !important;
+    clip-path: polygon(
+      0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, 
+      100% 0, 
+      100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 
+      0 100%
+    ) !important;
+  }
+  
+  .nav-btn-desktop span {
+    font-size: 0.95rem !important;
+  }
+  
+  .desktop-text {
+    display: none !important;
+  }
+  
+  .mobile-text {
+    display: inline !important;
+  }
+  
+  .nav-btn-desktop div {
+    display: none !important; /* Hides the arrow container */
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .nav-container {
+    padding: 14px 20px;
+    border-radius: 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1355,28 +1455,12 @@ a:hover {
     padding: 0 10px;
   }
 
-  .hero-wrapper {
-    background: linear-gradient(135deg, rgba(224, 231, 255, 0.15) 0%, rgba(250, 232, 255, 0.15) 50%, rgba(224, 242, 254, 0.15) 100%);
-  }
-
-  .hero-wrapper::before {
-    opacity: 0.25;
-  }
-
   .hero {
-    padding: 60px 16px 40px;
+    padding: 56px 0 64px;
   }
 
   .nav-container {
-    padding: 16px 20px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-btn-desktop {
-    display: none;
+    padding: 14px 18px;
   }
 
   .mobile-menu-toggle {
@@ -1384,26 +1468,40 @@ a:hover {
   }
 
   .hero-shapes {
-    opacity: 0.2;
+    opacity: 0.5;
+  }
+
+  .opportunity-content {
+    text-align: left !important;
+  }
+  
+  .opportunity-content h3 {
+    text-align: left !important;
   }
 
   .hero-title {
-    font-size: 2.5rem;
-    line-height: 1.35;
+    font-size: clamp(2rem, 8vw, 2.8rem);
   }
 
   .hero-subtitle {
     font-size: 1rem;
     margin-bottom: 32px;
+    max-width: 100%;
   }
 
   .hero-actions {
     flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions > * {
     width: 100%;
   }
 
   .hero-actions .btn {
     width: 100%;
+    max-width: 360px;
     margin-bottom: 8px;
   }
 
@@ -1431,18 +1529,11 @@ a:hover {
   }
 
   .cta-section {
-    margin: 40px 16px;
-    padding: 60px 24px;
+    margin: 32px 12px;
+    padding: 48px 20px;
+    border-radius: 24px;
   }
 
-  .cta-title {
-    font-size: 2rem;
-  }
-
-  .cta-body {
-    font-size: 1.05rem;
-    margin-bottom: 32px;
-  }
 
   .footer-content {
     flex-direction: column;
@@ -1486,6 +1577,12 @@ a:hover {
 
   .two-col-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .col-box {
+    padding: 24px !important;
+    border-radius: 16px !important;
   }
 
   .form-container {

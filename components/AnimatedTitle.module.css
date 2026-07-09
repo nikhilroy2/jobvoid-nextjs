@@ -1,14 +1,26 @@
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 80px 20px;
   width: 100%;
 }
 
+.center {
+  justify-content: center;
+}
+
+.left {
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+.left-on-mobile {
+  justify-content: center;
+}
+
 .title {
   font-size: 8rem;
-  line-height: 0.85;
+  line-height: 1;
   margin: 0;
   text-align: left;
   
@@ -53,6 +65,9 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 40px 20px 20px;
+  }
   .title {
     font-size: 4rem;
   }

@@ -34,8 +34,8 @@ export default function Header() {
       transform: headerState === 'hidden' ? 'translateY(-150%)' : 'translateY(0)',
       transition: headerState === 'top' ? 'none' : 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
     }}>
-      <div className="container">
-        <nav className="nav-container">
+      <div className="container" style={{ position: 'relative' }}>
+        <nav className={`nav-container ${headerState === 'sticky' ? 'scrolled' : ''}`}>
         <Link href="/" className="nav-brand">Jobvoid</Link>
         
         {/* Desktop Links */}
@@ -47,21 +47,24 @@ export default function Header() {
           <Link href="/about">About</Link>
         </div>
         
-        {/* Desktop Button */}
-        <div className="nav-actions">
-          <PixelButton href="/apply" className="nav-btn-desktop" withArrow>
-            Apply to close
-          </PixelButton>
-        </div>
+        {/* Right side: Button + Toggle */}
+        <div className="nav-right">
+          <div className="nav-actions">
+            <PixelButton href="/apply" className="nav-btn-desktop" withArrow>
+              <span className="desktop-text">Apply to close</span>
+              <span className="mobile-text">Apply</span>
+            </PixelButton>
+          </div>
 
-        {/* Mobile Toggle Button */}
-        <button 
-          className="mobile-menu-toggle" 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile Toggle Button */}
+          <button 
+            className="mobile-menu-toggle" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
@@ -71,11 +74,6 @@ export default function Header() {
             <Link href="/pay" onClick={() => setIsMobileMenuOpen(false)}>Pay</Link>
             <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
             <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-            <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
-              <PixelButton href="/apply" className="nav-btn-mobile" withArrow>
-                Apply to close
-              </PixelButton>
-            </div>
           </div>
         )}
       </nav>

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import CTASection from "../components/CTASection";
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import FeatureSection from "../components/FeatureSection";
 import PixelButton from "../components/PixelButton";
@@ -33,33 +34,7 @@ export default function Home() {
         <Header />
 
         {/* Hero Section */}
-        <section className="hero" style={{ paddingTop: '140px' }}>
-          <div className="container">
-            <h1 className="hero-title">
-              <span className="hero-title-text">Close </span>
-              <span style={{ position: 'relative', display: 'inline-block', zIndex: 1, whiteSpace: 'nowrap' }}>
-                <span className="hero-title-text" style={{ position: 'relative', zIndex: 2 }}>B2B deals.</span>
-                <UnderlineSVG style={{ position: 'absolute', bottom: '-8px', left: 0, width: '100%', height: '14px', zIndex: -1 }} />
-              </span>{' '}
-              <span className="hero-title-text">Get paid every Friday. Work on your terms.</span>
-            </h1>
-            <p className="hero-subtitle">
-              Jobvoid places <span className="text-highlight">aggressive closers</span> with AI companies that already have the product, the budget, and the demand. We hand you the <span className="text-bold">leads, the script, and a dialer account</span>. You bring the close.
-            </p>
-            <div className="hero-actions">
-              <PixelButton>
-                Start Closing
-              </PixelButton>
-              <PixelButton variant="outline">
-                See how the pay works
-              </PixelButton>
-            </div>
-            <div className="hero-trust" style={{ marginTop: '24px' }}>
-              <CheckCircle2 size={16} className="text-accent" color="var(--accent-color)" />
-              Closing for AI clients since 2020. Based in Houston, Texas.
-            </div>
-          </div>
-        </section>
+        <Hero />
       </div>
 
       {/* Stat strip */}
@@ -73,16 +48,16 @@ export default function Home() {
       {/* Section: The opportunity */}
       <section className="section section-glass">
         <div className="container">
-          <AnimatedTitle text1="What" text2="this is" />
+          <AnimatedTitle text1="What" text2="this is" align="left-on-mobile" />
 
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginTop: '-20px' }}>
-            <h3 style={{ fontSize: '2rem', marginBottom: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>
+          <div className="opportunity-content" style={{ maxWidth: '800px', margin: '0 auto', marginTop: '-20px' }}>
+            <h3 style={{ fontSize: 'clamp(1.5rem, 6vw, 2rem)', marginBottom: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>
               A real closing seat with an AI client, not a job board listing.
             </h3>
-            <p className="section-body" style={{ marginBottom: '24px', fontSize: '1.15rem' }}>
+            <p className="section-body" style={{ marginBottom: '24px', fontSize: 'clamp(1rem, 4vw, 1.15rem)' }}>
               Jobvoid is a sales recruiting firm in Houston. Since 2020 we have done one thing: <span className="text-bold">find closers and put them on the phones</span> for AI companies that need pipeline. We are not a marketplace and we are not posting other people's jobs. When you join, you are <span className="text-highlight">closing for our current client</span>, and we run everything behind you so your only job is the conversation.
             </p>
-            <p className="section-body" style={{ fontSize: '1.15rem' }}>
+            <p className="section-body" style={{ fontSize: 'clamp(1rem, 4vw, 1.15rem)' }}>
               The client sells a <span className="text-bold">one-for-you AI visibility service</span> to businesses. You will be calling companies that should be buying it and most of the time do not even know they need it yet. That gap is your opening, and it is <span className="text-highlight">why these calls convert</span>.
             </p>
           </div>
@@ -100,9 +75,9 @@ export default function Home() {
         }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 0' }}>
-            <AnimatedTitle text1="The" text2="Offer" />
-            <h3 style={{ fontSize: '2rem', marginTop: '24px', marginBottom: '64px', fontWeight: 700, letterSpacing: '-0.02em' }}>
+          <div className="opportunity-content" style={{ maxWidth: '800px', margin: '0 auto 0' }}>
+            <AnimatedTitle text1="The" text2="Offer" align="left-on-mobile" />
+            <h3 style={{ fontSize: 'clamp(1.5rem, 6vw, 2rem)', marginTop: '16px', marginBottom: '64px', fontWeight: 700, letterSpacing: '-0.02em' }}>
               Everything a closer wants, and nothing they hate.
             </h3>
           </div>

@@ -185,4 +185,18 @@
   .title {
     font-size: 2.5rem;
   }
+  .cardInfo {
+    padding: 24px 20px;
+  }
+  .cardTitle {
+    font-size: 1.15rem;
+  }
+  .cardDesc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  .cardDesc p, .cardDesc ul {
+    font-size: inherit;
+    line-height: inherit;
+  }
 }

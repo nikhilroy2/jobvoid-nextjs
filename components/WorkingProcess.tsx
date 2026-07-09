@@ -4,7 +4,16 @@ import { ClipboardEdit, BadgeCheck, Settings, Headset, Banknote } from 'lucide-r
 import AnimatedTitle from './AnimatedTitle';
 import styles from './WorkingProcess.module.css';
 
-const processes = [
+export interface ProcessItem {
+  id: string;
+  title1: string;
+  title2: string;
+  items?: string[];
+  description?: string;
+  icon: React.ReactNode;
+}
+
+const defaultProcesses: ProcessItem[] = [
   {
     id: '01',
     title1: 'Apply.',
@@ -42,7 +51,17 @@ const processes = [
   }
 ];
 
-export default function WorkingProcess() {
+interface WorkingProcessProps {
+  processes?: ProcessItem[];
+  titleText1?: string;
+  titleText2?: string;
+}
+
+export default function WorkingProcess({ 
+  processes = defaultProcesses,
+  titleText1 = "The",
+  titleText2 = "Process" 
+}: WorkingProcessProps = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -70,9 +89,9 @@ export default function WorkingProcess() {
   }, []);
 
   return (
-    <section className={styles.section} style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+    <section className={styles.section} style={{ paddingBottom: '80px' }}>
       {/* Reusing the AnimatedTitle component as requested */}
-      <AnimatedTitle text1="The" text2="Process" />
+      <AnimatedTitle text1={titleText1} text2={titleText2} align="left-on-mobile" />
       
       <div className={styles.container}>
         
@@ -109,11 +128,15 @@ export default function WorkingProcess() {
               </div>
               
               <div className={styles.listCell}>
-                <ul className={styles.list}>
-                  {process.items.map((item, i) => (
-                    <li key={i} className={styles.listItem}>{item}</li>
-                  ))}
-                </ul>
+                {process.description ? (
+                  <p className={styles.description}>{process.description}</p>
+                ) : (
+                  <ul className={styles.list}>
+                    {process.items?.map((item, i) => (
+                      <li key={i} className={styles.listItem}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
               
             </div>
