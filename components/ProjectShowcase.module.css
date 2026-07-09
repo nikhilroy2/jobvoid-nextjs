@@ -1,0 +1,208 @@
+.section {
+  background-color: #1c1c1c;
+  padding: 100px 40px;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE ROW */
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.subtitle {
+  color: #a3e635; /* lime green */
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.titleItalic {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* SCATTERED DESKTOP LAYOUT */
+.layoutWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Row (3 items) */
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.card1 {
+  width: 30%;
+  margin-top: 0;
+}
+
+.card2Wrapper {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px; /* little below */
+}
+
+.card2 {
+  width: 100%;
+}
+
+.card3 {
+  width: 30%;
+  margin-top: 120px; /* more below */
+}
+
+/* Bottom Row (2 items) */
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 60px; /* Push bottom row down */
+}
+
+.card4 {
+  width: 35%;
+  margin-left: 10%; /* Indent to fit visually between col1 and col2 */
+}
+
+.card5 {
+  width: 25%;
+  margin-right: 5%; /* Align visually below col3 */
+  margin-top: 100px; /* Push Sketching card down */
+}
+
+/* CARD STYLES */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.imageBox {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.imageBox:hover {
+  transform: translateY(-4px);
+  color: #a3e635;
+}
+
+.imageBox.landscape {
+  aspect-ratio: 4/3;
+}
+.imageBox.wide {
+  aspect-ratio: 16/9;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  color: #ffffff;
+}
+
+.arrowIcon {
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover .arrowIcon {
+  transform: translate(3px, -3px);
+}
+
+.divider {
+  height: 1px;
+  background-color: #333333;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* RESPONSIVE 2x2 GRID (Mobile) */
+@media (max-width: 900px) {
+  .layoutWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  
+  /* Flatten the DOM structure for the grid using display: contents */
+  .topRow, .bottomRow, .card2Wrapper {
+    display: contents;
+  }
+
+  /* Reset all widths and margins so they fill grid cells */
+  .card1, .card2, .card3, .card4, .card5 {
+    width: 100%;
+    margin: 0;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .layoutWrapper {
+    gap: 16px;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+  .section {
+    padding: 60px 20px;
+  }
+}

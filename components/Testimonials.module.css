@@ -1,0 +1,268 @@
+.section {
+  width: 100%;
+  background-color: #f8f9fa; /* Off-white background from image */
+  padding: 120px 40px;
+  color: #111111;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 80px;
+}
+
+/* LEFT COLUMN */
+.leftColumn {
+  flex: 0 0 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 60px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #333;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.statsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #f8f9fa; /* Matches section bg to create cutout effect */
+  margin-right: -16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarPlus {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #111111;
+  font-weight: 600;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f8f9fa;
+  margin-left: -16px;
+  z-index: 4;
+}
+
+.statsText {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+}
+
+/* MAIN COLUMN */
+.mainColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleWrapper {
+  margin-bottom: 60px;
+  /* Shift negative margin to pull the title nicely to the left if needed */
+  margin-left: -20px;
+}
+
+/* Make AnimatedTitle inherit left alignment within this wrapper if possible */
+.titleWrapper > div {
+  padding: 0 !important;
+  align-items: flex-start !important;
+}
+
+.sliderContainer {
+  position: relative;
+  width: 100%;
+}
+
+.decorativeDot {
+  position: absolute;
+  left: -80px; /* Positions it between the left col and image */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #111;
+}
+
+.slideContent {
+  display: flex;
+  gap: 60px;
+}
+
+.slideContent.right {
+  animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slideContent.left {
+  animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.imageColumn {
+  flex: 0 0 400px;
+}
+
+.mainImage {
+  width: 100%;
+  aspect-ratio: 3/4; /* Portrait ratio matching image */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.textColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.quote {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #666;
+  margin: 0 0 40px 0;
+}
+
+.authorInfo {
+  margin-bottom: 60px;
+}
+
+.authorName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px 0;
+}
+
+.authorRole {
+  font-size: 1.1rem;
+  color: #888;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+}
+
+.controlBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.controlBtn:hover {
+  color: #111;
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 60px;
+  }
+  
+  .leftColumn {
+    flex: none;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  
+  .statsWrapper {
+    margin-top: 0;
+  }
+  
+  .decorativeDot {
+    display: none; /* Hide on smaller screens */
+  }
+  
+  .slideContent {
+    flex-direction: column;
+  }
+  
+  .imageColumn {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+  .leftColumn {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+}

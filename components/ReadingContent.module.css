@@ -1,0 +1,136 @@
+.section {
+  padding: 160px 20px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.titleWrapper {
+  margin-bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.paragraph {
+  font-size: 2.25rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #1f2937; /* Dark slate for high readability */
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- COLORFUL HIGHLIGHT STYLES --- */
+
+/* 1. Simple bold color with italics */
+.highlightBlue {
+  color: #3b82f6;
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* 2. Vibrant solid pop */
+.highlightOrange {
+  color: #f97316;
+  font-weight: 700;
+}
+
+/* 3. Underlined highlight */
+.highlightPink {
+  color: #ec4899;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+}
+.highlightPink::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #fbcfe8; /* Light pink underline */
+  z-index: -1;
+  border-radius: 3px;
+}
+
+/* 4. Outlined Pill Style */
+.highlightGreen {
+  color: #10b981;
+  border: 3px solid #10b981;
+  padding: 2px 16px;
+  border-radius: 40px;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+/* 5. Stunning Gradient Text */
+.highlightGradient {
+  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.signature {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #9ca3af;
+  align-self: flex-end;
+  margin-right: 60px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .paragraph {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px;
+  }
+  .titleWrapper {
+    margin-bottom: 50px;
+  }
+  .content {
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  .paragraph {
+    font-size: 1.4rem;
+  }
+  .highlightGreen {
+    padding: 0 10px;
+    border-width: 2px;
+    transform: translateY(-1px);
+  }
+  .highlightPink::after {
+    bottom: 4px;
+    height: 4px;
+  }
+  .signature {
+    align-self: center;
+    margin-right: 0;
+    font-size: 1.25rem;
+  }
+}

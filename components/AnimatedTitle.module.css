@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  width: 100%;
+}
+
+.title {
+  font-size: 8rem;
+  line-height: 0.85;
+  margin: 0;
+  text-align: left;
+  
+  /* The magic scroll fill effect */
+  background: linear-gradient(
+    to right, 
+    #111111 var(--progress, 0%), 
+    #a3a3a3 var(--progress, 0%)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+  
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.word1 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  display: block;
+}
+
+.word2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: normal;
+  display: block;
+  margin-left: 140px; /* Indent the second word to match the image */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 6rem;
+  }
+  .word2 {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+  .word2 {
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 3rem;
+  }
+  .word2 {
+    margin-left: 40px;
+  }
+}

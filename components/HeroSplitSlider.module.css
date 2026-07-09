@@ -1,0 +1,201 @@
+.section {
+  width: 100%;
+  background: #ffffff;
+  padding: 120px 40px; /* Deep padding to frame the component beautifully */
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 700px;
+  display: flex;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15); /* Strong shadow to lift it off the page */
+}
+
+.left {
+  flex: 1;
+  position: relative;
+  transition: background-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  color: white;
+}
+
+.textContent {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Animate out: slides up slightly and fades out */
+.textContent {
+  transform: translateY(-60%);
+}
+
+/* Animate in: slides to exact center and fades in */
+.textContent.activeText {
+  opacity: 1;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  transition-delay: 0.3s; /* Wait for background color transition slightly */
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 30px 0;
+  letter-spacing: -0.02em;
+}
+
+/* Transparent text with outline for a highly stylized design */
+.titleLine2 {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+}
+
+.desc {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 450px;
+  margin: 0;
+}
+
+.controls {
+  position: absolute;
+  bottom: 80px;
+  left: 80px;
+  display: flex;
+  gap: 16px;
+}
+
+/* Minimalist horizontal progress dots */
+.dot {
+  width: 40px;
+  height: 4px;
+  background-color: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 0;
+}
+
+.dot.activeDot {
+  background-color: white;
+  width: 60px; /* Expands when active */
+}
+
+.dot:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
+.right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Dramatic Clip-path reveal animation from right to left */
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.imageWrapper.activeImage {
+  clip-path: inset(0 0 0 0);
+  /* The z-index is handled inline in React to ensure the incoming image is on top */
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Slight scale down as it reveals for a cinematic feel */
+  transform: scale(1.15);
+  transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.imageWrapper.activeImage .image {
+  transform: scale(1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 4rem;
+  }
+  .left {
+    padding: 60px;
+  }
+  .textContent {
+    left: 60px;
+  }
+  .controls {
+    bottom: 60px;
+    left: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+  .container {
+    flex-direction: column;
+    height: 800px;
+  }
+  .left {
+    padding: 40px;
+    flex: 0 0 50%;
+  }
+  .textContent {
+    left: 40px;
+    padding-right: 40px; /* Prevent text touching edge */
+  }
+  .controls {
+    bottom: 40px;
+    left: 40px;
+  }
+  .title {
+    font-size: 3rem;
+  }
+  .desc {
+    font-size: 1rem;
+  }
+  .right {
+    flex: 0 0 50%;
+  }
+  /* Change clip path direction for mobile (top to bottom reveal instead of horizontal) */
+  .imageWrapper {
+    clip-path: inset(100% 0 0 0);
+  }
+  .imageWrapper.activeImage {
+    clip-path: inset(0 0 0 0);
+  }
+}

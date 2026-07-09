@@ -1,0 +1,193 @@
+.scrollContainer {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 1025px) {
+  .scrollContainer {
+    height: 400vh; /* Creates the massive scrollable space to scrub through tabs */
+  }
+}
+
+.stickyWrapper {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111111;
+}
+
+@media (min-width: 1025px) {
+  .stickyWrapper {
+    position: sticky;
+    top: 120px;
+    height: max-content;
+  }
+}
+
+.sectionPadding {
+  padding: 0 40px 100px 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  max-width: 1300px;
+  margin: 0 auto 60px auto;
+  width: 100%;
+}
+
+.labelWrapper {
+  margin-bottom: 40px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+.dashedLine {
+  width: 100%;
+  border-top: 1px dashed #d1d5db;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* LEFT SIDEBAR */
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebarItem {
+  background-color: #f3f4f6;
+  color: #111111;
+  opacity: 0.3; /* Faded by default */
+  transition: opacity 0.3s ease;
+  padding: 24px 32px;
+  cursor: pointer;
+  
+  /* Pixelated corners */
+  clip-path: polygon(
+    0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, 
+    calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 
+    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+  );
+}
+
+.sidebarItem:hover {
+  opacity: 0.6;
+}
+
+.sidebarItem.active {
+  opacity: 1; /* Fully visible when active */
+}
+
+.sidebarTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sidebarDesc {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* RIGHT CONTENT (SINGLE CARD REPLACES) */
+.content {
+  flex: 1.4;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.activeCardWrapper {
+  width: 100%;
+  animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #6b7280; /* Fallback */
+}
+
+.tags {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.tag {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .sectionPadding {
+    padding: 100px 20px;
+  }
+  
+  .container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .content {
+    width: 100%;
+  }
+}

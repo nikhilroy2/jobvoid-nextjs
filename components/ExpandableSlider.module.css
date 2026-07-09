@@ -1,0 +1,186 @@
+.section {
+  padding: 120px 40px;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 60px;
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.italic {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #6366f1; /* Vibrant Indigo accent */
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: 600px;
+  gap: 20px;
+}
+
+.panel {
+  position: relative;
+  height: 100%;
+  border-radius: 24px;
+  cursor: pointer;
+  overflow: hidden;
+  /* Flex base determines the collapsed size */
+  flex: 1;
+  transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.panel.active {
+  flex: 5; /* Expands to 5 times the size of a collapsed panel */
+  cursor: default;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.5s ease;
+  filter: brightness(0.4) grayscale(50%); /* Darker and desaturated when collapsed */
+}
+
+.panel.active .image {
+  transform: scale(1.05); /* Slight zoom on the active one */
+  filter: brightness(0.9) grayscale(0%);
+}
+
+.panel:hover:not(.active) .image {
+  filter: brightness(0.6) grayscale(0%);
+}
+
+/* Gradient overlay to make text highly readable */
+.panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%; /* Increased height for smoother fade */
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+/* Vertical title when collapsed */
+.verticalTitle {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg); /* Rotates text vertically */
+  transform-origin: center bottom;
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  z-index: 10; /* Ensure text is above the gradient */
+}
+
+.panel.active .verticalTitle {
+  opacity: 0;
+}
+
+/* Horizontal content when active */
+.content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: white;
+  opacity: 0;
+  transform: translateY(30px); /* Pushed down initially */
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0s;
+  pointer-events: none;
+  max-width: 400px;
+  z-index: 10; /* Ensure text is above the gradient */
+}
+
+.panel.active .content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s; /* Wait for expansion to finish before revealing text */
+  pointer-events: auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.5;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container {
+    height: 500px;
+  }
+  .verticalTitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+  .container {
+    flex-direction: column; /* Stacks vertically on mobile */
+    height: 800px;
+  }
+  .panel {
+    flex: 1;
+  }
+  .panel.active {
+    flex: 4; /* Takes up most of the vertical space */
+  }
+  .verticalTitle {
+    transform: none; /* Make it normal horizontal text on mobile */
+    left: 30px;
+    bottom: 20px;
+    font-size: 1.5rem;
+  }
+  .content {
+    left: 20px;
+    bottom: 20px;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+}

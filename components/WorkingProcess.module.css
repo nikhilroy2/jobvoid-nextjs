@@ -1,0 +1,205 @@
+.section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111111;
+  padding-bottom: 120px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* LEFT COLUMN */
+.leftColumn {
+  width: 320px; /* Fixed width for the image column */
+  flex-shrink: 0;
+  border-right: 1px solid #e5e5e5;
+  padding: 40px;
+}
+
+.stickyImage {
+  position: sticky;
+  top: 140px; /* Offset from top of viewport */
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: linear-gradient(135deg, #f97316, #ea580c); /* Orange placeholder */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* RIGHT COLUMN */
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.processRow {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  min-height: 250px;
+}
+
+.processRow:last-child {
+  border-bottom: none;
+}
+
+/* NUMBER CELL */
+.numberCell {
+  width: 120px;
+  flex-shrink: 0;
+  border-right: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Context for absolute timeline node */
+}
+
+.number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.timelineNode {
+  position: absolute;
+  left: -8px; /* Centers the 16px node exactly on the 1px left border */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+.timelineNode.active {
+  border-color: #111111;
+}
+
+.innerDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #111111;
+}
+
+/* TITLE CELL */
+.titleCell {
+  flex: 1;
+  border-right: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.rowTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.rowTitleItalic {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* LIST CELL */
+.listCell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 40px 40px 60px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #4b5563;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.listItem::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid #9ca3af;
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .leftColumn {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 40px 20px;
+  }
+  
+  .stickyImage {
+    position: relative;
+    top: 0;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .timelineNode {
+    display: none; /* Hide timeline node since left/right split is gone */
+  }
+}
+
+@media (max-width: 768px) {
+  .processRow {
+    flex-direction: column;
+  }
+  
+  .numberCell {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 20px;
+    min-height: 80px;
+  }
+  
+  .titleCell {
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 30px 20px;
+  }
+  
+  .listCell {
+    padding: 30px 20px;
+  }
+}
