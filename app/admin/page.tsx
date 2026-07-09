@@ -85,7 +85,7 @@ export default function AdminDashboard() {
               <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `$${value}`} />
               <Tooltip 
                 contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}
-                formatter={(value: number) => [`$${value}`, 'Revenue']}
+                formatter={(value: any) => [`$${value}`, 'Revenue']}
               />
               <Line type="monotone" dataKey="revenue" stroke="#8b5cf6" strokeWidth={3} dot={{r: 4, strokeWidth: 2}} activeDot={{r: 6}} />
             </LineChart>
