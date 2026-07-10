@@ -98,24 +98,28 @@ export default function WorkingProcess({
         {/* Left Column (Sticky Image) */}
         <div className={styles.leftColumn}>
           <div className={styles.stickyImage}>
-             {processes[activeIndex]?.icon}
+             <div key={activeIndex} className={styles.iconAnimate}>
+               {processes[activeIndex]?.icon}
+             </div>
           </div>
         </div>
 
         {/* Right Column (Rows) */}
         <div className={styles.rightColumn}>
-          {processes.map((process, index) => (
+          {processes.map((process, index) => {
+            const isActive = activeIndex === index;
+            return (
             <div 
               key={process.id} 
               data-index={index}
               ref={(el) => { rowRefs.current[index] = el; }}
-              className={styles.processRow}
+              className={`${styles.processRow} ${isActive ? styles.activeRow : ''}`}
             >
               
               <div className={styles.numberCell}>
                 {/* Timeline node that sits on the border */}
-                <div className={`${styles.timelineNode} ${activeIndex === index ? styles.active : ''}`}>
-                  {activeIndex === index && <div className={styles.innerDot}></div>}
+                <div className={styles.timelineNode}>
+                  <div className={styles.innerDot}></div>
                 </div>
                 <span className={styles.number}>{process.id}</span>
               </div>
@@ -140,7 +144,8 @@ export default function WorkingProcess({
               </div>
               
             </div>
-          ))}
+            );
+          })}
         </div>
         
       </div>

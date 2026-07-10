@@ -26,13 +26,36 @@
   top: 140px; /* Offset from top of viewport */
   width: 100%;
   aspect-ratio: 1/1;
-  background: #f3f4f6; /* Light gray background */
-  border-radius: 12px;
-  border: 1px solid #e5e5e5;
+  background: rgba(248, 250, 252, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 32px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.stickyImage::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+  z-index: 0;
+}
+
+.iconAnimate {
+  position: relative;
+  z-index: 1;
+  animation: iconPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+}
+
+@keyframes iconPop {
+  0% { opacity: 0; transform: scale(0.6) rotate(-10deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 
 /* RIGHT COLUMN */
@@ -44,8 +67,13 @@
 
 .processRow {
   display: flex;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e2e8f0;
   min-height: 250px;
+  transition: background-color 0.4s ease;
+}
+
+.processRow:hover, .processRow.activeRow {
+  background-color: rgba(248, 250, 252, 0.5);
 }
 
 .processRow:last-child {
@@ -64,36 +92,54 @@
 }
 
 .number {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #111111;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px #cbd5e1;
+  transition: all 0.4s ease;
+}
+
+.processRow:hover .number, .activeRow .number {
+  color: #1e293b;
+  -webkit-text-stroke: 0;
 }
 
 .timelineNode {
   position: absolute;
-  left: -8px; /* Centers the 16px node exactly on the 1px left border */
+  left: -9px; /* Center 17px node exactly on the 1px left border */
   top: 50%;
   transform: translateY(-50%);
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   background-color: #ffffff;
-  border: 1px solid #999;
+  border: 2px solid #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
 }
 
-.timelineNode.active {
-  border-color: #111111;
+.activeRow .timelineNode {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.15);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .innerDot {
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background-color: #111111;
+  background-color: #3b82f6;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.activeRow .innerDot {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* TITLE CELL */
@@ -102,24 +148,25 @@
   border-right: 1px solid #e5e5e5;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 40px;
+  justify-content: flex-start;
+  padding: 40px 60px;
 }
 
 .rowTitle {
-  font-size: 2.25rem;
+  font-size: 2.75rem;
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
-  text-align: center;
+  text-align: left;
   letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
 .rowTitleItalic {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   font-weight: 400;
-  letter-spacing: normal;
+  color: #64748b;
 }
 
 /* LIST CELL */
@@ -142,21 +189,23 @@
 
 .listItem {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  color: #4b5563;
-  font-size: 0.95rem;
+  align-items: flex-start;
+  gap: 12px;
+  color: #334155;
+  font-size: 1.1rem;
   font-weight: 500;
+  line-height: 1.5;
 }
 
 .listItem::before {
-  content: '';
-  display: block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 1px solid #9ca3af;
-  flex-shrink: 0;
+  content: '→';
+  color: #3b82f6;
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: none;
+  width: auto;
+  height: auto;
+  line-height: 1.2;
 }
 
 .description {

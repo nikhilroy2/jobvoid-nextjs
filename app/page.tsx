@@ -23,6 +23,7 @@ import PixelButton from "../components/PixelButton";
 import UnderlineSVG from "../components/UnderlineSVG";
 import SpeedMarquee from "../components/SpeedMarquee";
 import AnimatedTitle from "../components/AnimatedTitle";
+import CreativeDualCards from "../components/CreativeDualCards";
 import ProjectShowcase from "../components/ProjectShowcase";
 import SideBySideFeatures from "../components/SideBySideFeatures";
 import ExpandableProcess from "../components/ExpandableProcess";
@@ -143,8 +144,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Combined Section: Who you'll call, Read this before you apply, The money */}
+      {/* Combined Section: Who you'll call */}
       <StickyProjectShowcase />
+
+      {/* New Section: Dynamic Interactive Cards Section */}
+      <section className="section" style={{ padding: '0 0 80px 0', position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1, padding: 0 }}>
+          <CreativeDualCards />
+        </div>
+      </section>
 
       {/* Section: How it works, condensed */}
       <WorkingProcess />

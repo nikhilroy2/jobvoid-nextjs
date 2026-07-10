@@ -28,20 +28,6 @@ const defaultProjects: ProjectItem[] = [
     desc: "The best customers are service businesses where a single new client is worth thousands, so visibility pays for itself fast. Think cosmetic surgeons, med spas, dentists, aesthetic and elective medical practices, law firms, and other high-margin local providers. When one new patient or client is worth several thousand dollars, getting named by an AI assistant instead of a competitor is an easy yes once they understand the stakes. Your job is to make them understand the stakes.",
     image: "/who_you_ll_call.png"
   },
-  {
-    id: 2,
-    tag: "Read this before you apply",
-    title: "Commission only. Cold calling. Experience required.",
-    desc: "There is no base, no draw, and no hourly. You earn on what you close. These are cold calls, not warm inbound leads, though the list is targeted at businesses that genuinely fit. And you need real B2B closing experience, because this is not where you learn to sell. We put this on the home page on purpose. The people who can handle it should keep reading. The people who cannot should save themselves the time.",
-    image: "/read_this_before.png"
-  },
-  {
-    id: 3,
-    tag: "The money",
-    title: "Flat commission on every close, plus a recurring tail.",
-    desc: "Every sale pays you a flat commission, paid that Friday. On top of that, each sale carries a small recurring percentage that keeps paying for three months, as long as you stay active. Active means you close at least one new sale that month. Keep closing and you stack fresh commissions on top of the recurring tail from your recent sales.",
-    image: "/the_money.png"
-  }
 ];
 
 function ScrollCard({ project }: { project: any }) {

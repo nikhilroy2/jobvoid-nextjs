@@ -1,0 +1,494 @@
+.treeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 0;
+}
+
+.topDot {
+  width: 16px;
+  height: 16px;
+  background: var(--gradient-primary, #3b82f6);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  z-index: 2;
+  margin-top: -8px; /* Moves it exactly onto the section boundary line! */
+}
+
+.trunk {
+  width: 2px;
+  height: 160px; /* Increased from 80px to match reference image */
+  background: #cbd5e1;
+  z-index: 1;
+}
+
+/* Branching logic for 4 columns with 24px gap */
+.branchesWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 0;
+}
+
+.branchCol1, .branchCol2, .branchCol3, .branchCol4 {
+  position: relative;
+}
+
+/* --- COL 2 (INNER LEFT) --- */
+/* Center split (Trunk to Horizontal) */
+.branchCol2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: -13px; /* Overlaps trunk by 1px */
+  height: 30px;
+  border-right: 2px solid #cbd5e1;
+  border-bottom: 2px solid #cbd5e1;
+  border-bottom-right-radius: 24px;
+}
+/* Continue Horizontal to Col 1 */
+.branchCol2::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: -24px;
+  right: 50%;
+  border-top: 2px solid #cbd5e1;
+}
+/* Drop to Card 2 */
+.branchDropLeft {
+  position: absolute;
+  top: 28px;
+  left: calc(50% - 1px);
+  width: 24px; 
+  height: 112px;
+  border-top: 2px solid #cbd5e1;
+  border-left: 2px solid #cbd5e1;
+  border-top-left-radius: 24px;
+}
+
+/* --- COL 3 (INNER RIGHT) --- */
+/* Center split (Trunk to Horizontal) */
+.branchCol3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -13px; /* Overlaps trunk by 1px */
+  right: 50%;
+  height: 30px;
+  border-left: 2px solid #cbd5e1;
+  border-bottom: 2px solid #cbd5e1;
+  border-bottom-left-radius: 24px;
+}
+/* Continue Horizontal to Col 4 */
+.branchCol3::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  right: -24px;
+  border-top: 2px solid #cbd5e1;
+}
+/* Drop to Card 3 */
+.branchDropRight {
+  position: absolute;
+  top: 28px;
+  right: calc(50% - 1px);
+  width: 24px; 
+  height: 112px;
+  border-top: 2px solid #cbd5e1;
+  border-right: 2px solid #cbd5e1;
+  border-top-right-radius: 24px;
+}
+
+/* --- COL 1 (OUTER LEFT) --- */
+.branchCol1::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(50% - 1px);
+  right: -24px;
+  height: 32px;
+  border-top: 2px solid #cbd5e1;
+  border-left: 2px solid #cbd5e1;
+  border-top-left-radius: 24px;
+}
+
+/* --- COL 4 (OUTER RIGHT) --- */
+.branchCol4::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: -24px;
+  right: calc(50% - 1px);
+  height: 32px;
+  border-top: 2px solid #cbd5e1;
+  border-right: 2px solid #cbd5e1;
+  border-top-right-radius: 24px;
+}
+
+/* Dots at the end of the branches */
+.cardDot {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotOuterLeft { border-color: #3b82f6; }
+.dotInnerLeft { border-color: #8b5cf6; }
+.dotInnerRight { border-color: #ec4899; }
+.dotOuterRight { border-color: #10b981; }
+
+.cardWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The 4 Cards Row */
+.cardsRow {
+  display: grid;
+  width: 100%;
+  align-items: start; /* Prevents cards from stretching to equal heights */
+}
+
+@media (min-width: 992px) {
+  .cardsRow {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 0;
+  }
+  .cardWrapperOuter {
+    margin-top: 0; /* Outer cards sit high */
+  }
+  .cardWrapperInner {
+    margin-top: 80px; /* Inner cards are pushed down */
+  }
+  .cardDot {
+    top: -16px; 
+    left: calc(50% - 16px); /* perfectly aligned using exact math instead of transform */
+  }
+}
+
+.card {
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.4s ease; /* Removed transform hover */
+  position: relative;
+  overflow: hidden;
+  /* Removed flex: 1 so they don't force height, rely on align-items: start */
+}
+
+.card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Removed translateY */
+}
+
+.mobileIconWrapper {
+  display: none;
+}
+
+.sliderControls {
+  display: none;
+}
+
+/* Card 1: White Profile Style */
+.cardWhite {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  min-height: 380px; /* Make it a tall card */
+}
+.iconTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 8px 12px;
+  border-radius: 20px;
+  width: max-content;
+  margin-bottom: 24px;
+}
+.cardWhite .cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+.cardWhite .cardDesc {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Card 2: Purple Square */
+.cardPurple {
+  background: var(--gradient-primary, linear-gradient(135deg, #8b5cf6, #3b82f6));
+  color: white;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 1 / 1; /* Force it to be a square (shorter) */
+  padding: 24px; /* Slightly less padding to fit perfectly */
+}
+.cardPurple::before {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.statTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: white;
+}
+.statDesc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* Card 3: Dark Quote */
+.cardDark {
+  background: #0f172a;
+  color: white;
+  aspect-ratio: 1 / 1.1; /* slightly taller than square but shorter than outer cards */
+}
+.quoteIcon {
+  margin-bottom: 24px;
+}
+.quoteText {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #f8fafc;
+}
+.quoteAuthor {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+.quoteAuthor strong {
+  font-size: 0.95rem;
+  color: white;
+}
+.quoteAuthor span {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* Card 4: White Pills */
+.cardPills {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  min-height: 380px; /* Make it a tall card */
+}
+.cardPills .cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+.cardPills .cardDesc {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+.pillsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  white-space: nowrap;
+}
+
+/* Zig-zag and rotate layout */
+.pill:nth-child(1) {
+  transform: rotate(-8deg) translateX(-24px);
+}
+.pill:nth-child(2) {
+  transform: rotate(6deg) translateX(24px);
+}
+.pill:nth-child(3) {
+  transform: rotate(-10deg) translateX(-12px);
+}
+.pill:nth-child(4) {
+  transform: rotate(5deg) translateX(20px);
+}
+.pillYellow { background: #fef08a; color: #854d0e; }
+.pillGreen { background: #bbf7d0; color: #166534; }
+.pillPink { background: #fbcfe8; color: #9d174d; }
+.pillBlue { background: #bfdbfe; color: #1e3a8a; }
+
+/* Mobile Layout */
+@media (max-width: 991px) {
+  .mobileIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  .cardPurple .mobileIconWrapper {
+    margin: 0 auto 20px auto;
+  }
+
+  .treeContainer {
+    position: relative;
+    padding-top: 48px; /* Added gap above first card */
+    padding-left: 0;
+    align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden; /* Force prevent any horizontal scrollbars */
+    box-sizing: border-box;
+  }
+  .topDot, .trunk, .branchesWrapper, .cardDot {
+    display: none; /* No need for tree lines on mobile */
+  }
+  .cardsRow {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0;
+    gap: 16px;
+    width: 100%;
+    padding: 10px 20px 40px 20px; /* 40px bottom for shadow clearance */
+    box-sizing: border-box;
+    scrollbar-width: none;
+  }
+  .cardsRow.isDragging {
+    scroll-snap-type: none;
+    cursor: grab;
+  }
+  .cardsRow.isDragging:active {
+    cursor: grabbing;
+  }
+  .cardsRow::-webkit-scrollbar {
+    display: none;
+  }
+  .cardWrapper {
+    flex: 0 0 85%;
+    max-width: 320px;
+    padding: 0; 
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+  .card {
+    height: 100%; /* Ensure all cards stretch to match the tallest one */
+    aspect-ratio: auto !important; /* Override desktop aspect ratios */
+    min-height: 380px !important; /* Uniform baseline height */
+  }
+  .cardWrapperOuter, .cardWrapperInner {
+    margin-top: 0; /* Override desktop stagger on mobile */
+  }
+  
+  /* Slider Controls */
+  .sliderControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: -16px; /* Pull it closer to cards */
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  .sliderDotsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  .sliderArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: none;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .sliderArrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .sliderArrow:not(:disabled):hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+  .sliderDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .sliderDot.activeDot {
+    background-color: #3b82f6;
+    width: 24px;
+    border-radius: 8px;
+  }
+  
+  /* Mobile Responsive Tweaks */
+  .statTitle {
+    font-size: 2rem; /* Scale down for mobile */
+    word-break: break-word;
+  }
+  .cardPurple {
+    padding: 32px 24px;
+  }
+  
+  /* Reduce pill shifts on mobile to prevent clipping inside the card */
+  .pill {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+  .pill:nth-child(1) { transform: rotate(-8deg) translateX(-10px); }
+  .pill:nth-child(2) { transform: rotate(6deg) translateX(10px); }
+  .pill:nth-child(3) { transform: rotate(-10deg) translateX(-5px); }
+  .pill:nth-child(4) { transform: rotate(5deg) translateX(10px); }
+}
