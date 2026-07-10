@@ -503,6 +503,14 @@ a:hover {
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  .hero-trust {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    gap: 6px;
+  }
+}
+
 /* Stats */
 .stat-strip {
   display: grid;
