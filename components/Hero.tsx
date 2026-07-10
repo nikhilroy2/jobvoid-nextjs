@@ -63,7 +63,7 @@ export default function Hero({
         
         {showActions && (
           <div className="hero-actions">
-            <PixelButton href={primaryButtonHref}>
+            <PixelButton href={primaryButtonHref} color="primary">
               {primaryButtonText}
             </PixelButton>
             <PixelButton href={secondaryButtonHref} variant="outline">

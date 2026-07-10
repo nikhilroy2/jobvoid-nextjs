@@ -22,6 +22,7 @@ import UnderlineSVG from "../components/UnderlineSVG";
 import SpeedMarquee from "../components/SpeedMarquee";
 import AnimatedTitle from "../components/AnimatedTitle";
 import ProjectShowcase from "../components/ProjectShowcase";
+import ExpandableProcess from "../components/ExpandableProcess";
 import StickyProjectShowcase from "../components/StickyProjectShowcase";
 import WorkingProcess from "../components/WorkingProcess";
 
@@ -82,48 +83,48 @@ export default function Home() {
             </h3>
           </div>
 
-          <ProjectShowcase hideTitle items={[
+          <ExpandableProcess items={[
             {
+              id: 'paid-friday',
+              number: '01.',
               title: "Paid every Friday.",
               description: "Close this week, get paid next Friday for it. No net-30, no waiting on the client, no chasing anyone for your money.",
-              icon: <Banknote size={96} strokeWidth={1.5} color="#10b981" />,
-              color: "#10b98144",
-              aspect: "landscape"
+              icon: <Banknote size={24} />
             },
             {
+              id: 'leads-provided',
+              number: '02.',
               title: "Leads and dialer provided.",
               description: "We give you a dialer account and a list of businesses worth calling. You log in and dial. No list building, no buying data, no prospecting grind.",
-              icon: <PhoneCall size={96} strokeWidth={1.5} color="#3b82f6" />,
-              color: "#3b83f64d",
-              aspect: "wide"
+              icon: <PhoneCall size={24} />
             },
             {
+              id: 'script',
+              number: '03.',
               title: "A script that already closes.",
               description: "You get the framework, the qualifying questions, and the objection answers built from real calls. You bring the delivery.",
-              icon: <FileCheck size={96} strokeWidth={1.5} color="#f59e0b" />,
-              color: "#f59f0b46",
-              aspect: "landscape"
+              icon: <FileCheck size={24} />
             },
             {
+              id: 'recurring',
+              number: '04.',
               title: "Recurring commission for 3 months.",
               description: "Every sale pays you a flat commission up front, plus a small recurring slice each month for three months.",
-              icon: <TrendingUp size={96} strokeWidth={1.5} color="#0ea5e9" />,
-              color: "#0ea4e94d",
-              aspect: "wide"
+              icon: <TrendingUp size={24} />
             },
             {
+              id: 'earnings',
+              number: '05.',
               title: "Real earnings.",
               description: "An average closer here earns around $5,000 a month. The strong ones earn over $10,000. The ceiling is yours to find.",
-              icon: <Target size={96} strokeWidth={1.5} color="#ec4899" />,
-              color: "#ec489a57",
-              aspect: "landscape"
+              icon: <Target size={24} />
             },
             {
+              id: 'hours',
+              number: '06.',
               title: "Your hours, your pace.",
               description: "Nobody clocks you in. We count closes, not minutes in a seat.",
-              icon: <Clock size={96} strokeWidth={1.5} color="#8b5cf6" />,
-              color: "#8a5cf646",
-              aspect: "wide"
+              icon: <Clock size={24} />
             }
           ]} />
         </div>

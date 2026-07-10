@@ -171,7 +171,7 @@ export default function Apply() {
               </div>
 
               <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
-                <PixelButton type="submit">
+                <PixelButton type="submit" color="success">
                   Submit application
                 </PixelButton>
               </div>

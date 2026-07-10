@@ -63,7 +63,7 @@ export default function CTASection({
             </p>
           )}
           {/* Button using PixelButton */}
-          <PixelButton href={buttonHref} withArrow>
+          <PixelButton href={buttonHref} withArrow color="gradient">
             {buttonText}
           </PixelButton>
         </div>

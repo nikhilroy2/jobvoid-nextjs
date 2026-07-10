@@ -50,7 +50,7 @@ export default function Header() {
           {/* Right side: Button + Toggle */}
           <div className="nav-right">
             <div className="nav-actions">
-              <PixelButton href="/apply" className="nav-btn-desktop" withArrow>
+              <PixelButton href="/apply" className="nav-btn-desktop" withArrow color="primary">
                 <span className="desktop-text">Apply to close</span>
                 <span className="mobile-text">Apply</span>
               </PixelButton>

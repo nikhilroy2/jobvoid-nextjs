@@ -7,6 +7,7 @@ export default function PixelButton({
   children = "Get Started", 
   onClick,
   variant = "solid",
+  color = "dark",
   href,
   className = "",
   withArrow = true,
@@ -15,12 +16,13 @@ export default function PixelButton({
   children?: React.ReactNode;
   onClick?: () => void;
   variant?: "solid" | "outline";
+  color?: "primary" | "danger" | "success" | "dark" | "light" | "gradient";
   href?: string;
   className?: string;
   withArrow?: boolean;
   type?: "button" | "submit" | "reset";
 }) {
-  const classes = `${styles.button} ${variant === 'outline' ? styles.outline : ''} ${className}`;
+  const classes = `${styles.button} ${variant === 'outline' ? styles.outline : ''} ${variant === 'solid' ? styles[color] || styles.dark : ''} ${className}`;
 
   if (href) {
     return (
