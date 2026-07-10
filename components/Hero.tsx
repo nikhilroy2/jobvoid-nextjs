@@ -34,7 +34,7 @@ export default function Hero({
   ),
   primaryButtonText = "Start Closing",
   primaryButtonHref = "/",
-  secondaryButtonText = "See how the pay works",
+  secondaryButtonText = "How the pay works",
   secondaryButtonHref = "/pay",
   trustText = "Closing for AI clients since 2020. Based in Houston, Texas.",
   showActions = true,
@@ -44,7 +44,33 @@ export default function Hero({
   subtitleMaxWidth = '750px'
 }: HeroProps) {
   return (
-    <section className="hero" style={{ paddingTop }}>
+    <section className="hero" style={{ paddingTop, position: 'relative' }}>
+      <div className="hero-bg-shape">
+        <svg
+          viewBox="0 0 1200 300"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="heroShapeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#ec4899" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.25" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#heroShapeGrad)">
+            <animate
+              attributeName="d"
+              dur="12s"
+              repeatCount="indefinite"
+              values="
+                M0 0 L1200 0 L1100 150 Q1000 300 900 225 Q800 150 700 225 Q600 300 500 225 Q400 150 300 225 Q200 300 100 150 L0 0 Z;
+                M0 0 L1200 0 L1120 180 Q1020 250 920 210 Q820 180 720 240 Q620 280 520 220 Q420 180 320 230 Q220 280 120 180 L0 0 Z;
+                M0 0 L1200 0 L1100 150 Q1000 300 900 225 Q800 150 700 225 Q600 300 500 225 Q400 150 300 225 Q200 300 100 150 L0 0 Z
+              "
+            />
+          </path>
+        </svg>
+      </div>
       {showShapes && (
         <div className="hero-shapes">
           <div className="shape shape-circle-1"></div>
@@ -54,13 +80,13 @@ export default function Hero({
           <div className="shape shape-pill shape-pill-2"></div>
         </div>
       )}
-      <div className="container">
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {titleNode}
-        
+
         <p className="hero-subtitle" style={{ maxWidth: subtitleMaxWidth }}>
           {subtitle}
         </p>
-        
+
         {showActions && (
           <div className="hero-actions">
             <PixelButton href={primaryButtonHref} color="primary">
@@ -71,7 +97,7 @@ export default function Hero({
             </PixelButton>
           </div>
         )}
-        
+
         {showTrust && (
           <div className="hero-trust" style={{ marginTop: '24px' }}>
             <CheckCircle2 size={16} className="text-accent" color="var(--accent-color)" />

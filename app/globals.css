@@ -283,6 +283,43 @@ a:hover {
   position: relative;
 }
 
+.hero-bg-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 480px;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-bg-shape svg {
+  width: 100%;
+  min-width: 800px;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-bg-shape {
+    height: 350px;
+  }
+  .hero-bg-shape svg {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-bg-shape {
+    height: 280px;
+  }
+  .hero-bg-shape svg {
+    min-width: 600px;
+  }
+}
+
 /* Floating Geometric Shapes */
 .hero-shapes {
   position: absolute;
@@ -442,6 +479,13 @@ a:hover {
   margin-bottom: 28px;
   position: relative;
   z-index: 10;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions > * {
+  flex: 1;
 }
 
 .hero-trust {
@@ -1294,6 +1338,141 @@ a:hover {
   z-index: 1;
   border-radius: 50%;
   pointer-events: none;
+}
+
+.features-section-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.features-section-bg::before {
+  content: '';
+  position: absolute;
+  inset: -100px;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.2) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.features-section-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  max-width: 1200px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(236, 72, 153, 0) 80%);
+  filter: blur(80px);
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.offer-section-bg {
+  position: relative;
+  overflow: hidden;
+  background: #f8fafc; /* Keep a light background base */
+}
+
+.offer-section-bg::before {
+  content: '';
+  position: absolute;
+  inset: -100px;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(59, 130, 246, 0.2) 0, rgba(59, 130, 246, 0.2) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(-45deg, rgba(59, 130, 246, 0.2) 0, rgba(59, 130, 246, 0.2) 1px, transparent 1px, transparent 80px);
+  background-position: center;
+  /* Different shape mask: fades vertically, full width */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.offer-section-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(59, 130, 246, 0.08) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Animated Grid Beams */
+.grid-beam {
+  position: absolute;
+  width: 60px; /* Small width as requested (short segment) */
+  height: 2px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 10px currentColor;
+  border-radius: 2px;
+}
+
+.grid-beam-1 {
+  top: 10%;
+  left: 10%;
+  color: rgba(59, 130, 246, 0.9);
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 1), transparent);
+  animation: beamScan 5s linear infinite;
+}
+
+.grid-beam-2 {
+  top: 40%;
+  left: 30%;
+  color: rgba(236, 72, 153, 0.9);
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 1), transparent);
+  animation: beamScan 6s linear infinite 2s;
+}
+
+.grid-beam-3 {
+  top: 70%;
+  left: 50%;
+  color: rgba(139, 92, 246, 0.9);
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 1), transparent);
+  animation: beamScan 7s linear infinite 1s;
+}
+
+.grid-beam-4 {
+  top: 80%;
+  left: 20%;
+  color: rgba(59, 130, 246, 0.9);
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 1), transparent);
+  animation: beamScanAlt 6s linear infinite 3s;
+}
+
+.grid-beam-5 {
+  top: 30%;
+  left: 10%;
+  color: rgba(236, 72, 153, 0.9);
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 1), transparent);
+  animation: beamScanAlt 8s linear infinite 5s;
+}
+
+@keyframes beamScan {
+  0% { transform: rotate(45deg) translateX(-200px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: rotate(45deg) translateX(1200px); opacity: 0; }
+}
+
+@keyframes beamScanAlt {
+  0% { transform: rotate(-45deg) translateX(-200px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: rotate(-45deg) translateX(1200px); opacity: 0; }
 }
 
 .form-group {
